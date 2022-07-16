@@ -70,13 +70,13 @@ public class Player : MonoBehaviour
     int wallDirX;
 
     [Header("INTERACTING")]
-    public bool canInteract;
-    public bool isInteracting;
+    bool canInteract;
+    bool isInteracting;
 
-    public bool canPushObject;
-    public  bool isPushingObject;
+    bool canPushObject;
+     bool isPushingObject;
 
-    public bool _interactInp;
+    bool _interactInp;
 
     //Other
     [HideInInspector] public Vector3 velocity;
