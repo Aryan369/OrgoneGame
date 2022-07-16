@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
     public bool canPushObject;
     public  bool isPushingObject;
 
-    private bool _interactInp;
+    public bool _interactInp;
 
     //Other
     [HideInInspector] public Vector3 velocity;
@@ -358,6 +358,15 @@ public class Player : MonoBehaviour
     {
         canInteract = controller.collisionData.canInteract;
 
+        if (_interactInp)
+        {
+            directionalInput = new Vector4(directionalInput.x, directionalInput.y, directionalInput.z, 1f);
+        }
+        else
+        {
+            directionalInput = new Vector4(directionalInput.x, directionalInput.y, directionalInput.z, 0f);
+        }
+        
         if (canInteract)
         {
             isInteracting = controller.collisionData.isInteracting;
@@ -365,7 +374,6 @@ public class Player : MonoBehaviour
         else
         {
             isInteracting = false;
-            // directionalInput = new Vector4(directionalInput.x, directionalInput.y, directionalInput.z, 0f);
         }
     }
 
@@ -535,15 +543,9 @@ public class Player : MonoBehaviour
     #region ActionBtn
     public void OnActionBtnInput()
     {
-        if (directionalInput.w == 0f)
+        if (canInteract)
         {
-            print("0 to 1");
-            directionalInput = new Vector4(directionalInput.x, directionalInput.y, directionalInput.z, 1f);
-        }
-        else
-        {
-            print("1 to 0");
-            directionalInput = new Vector4(directionalInput.x, directionalInput.y, directionalInput.z, 0f);
+            _interactInp = !_interactInp;
         }
     }
     #endregion

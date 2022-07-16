@@ -10,6 +10,7 @@ public class Controller2D : RaycastController
     public float maxSlopeAngle = 80f;
 
     Vector4 playerInput;
+    private bool isPushable;
 
     #endregion
 
@@ -17,6 +18,11 @@ public class Controller2D : RaycastController
     {
         base.Start();
         collisionData.faceDir = 1;
+
+        if (gameObject.CompareTag("Pushable"))
+        {
+            isPushable = true;
+        }
     }
 
     #region Methods
@@ -60,7 +66,10 @@ public class Controller2D : RaycastController
         }
 
         HorizontalCollisions(ref moveAmount);
-        InteractablesCollisions(ref moveAmount);
+        if (!isPushable)
+        {
+            InteractablesCollisions(ref moveAmount);
+        }
         
         if (moveAmount.y != 0)
         {
@@ -279,7 +288,7 @@ public class Controller2D : RaycastController
 
                 if (!collisionData.isClimbingSlope || slopeAngle > maxSlopeAngle)
                 {
-                    if (hit.distance <= 0.09f && otherCollider.CompareTag("Pushable"))
+                    if (hit.distance <= 0.1f && otherCollider.CompareTag("Pushable"))
                     {
                         moveAmount.x = (hit.distance - skinWidth) * directionX;
                     }
@@ -294,11 +303,18 @@ public class Controller2D : RaycastController
             
             if (otherCollider != null)
             {
-                if (!otherCollider.CompareTag("Pushable"))
+                if (otherCollider.CompareTag("Pushable"))
                 {
-                    collisionData.canInteract = true;
+                    if (hit.distance <= 0.1f)
+                    {
+                        collisionData.canInteract = true;
+                    }
+                    else
+                    {
+                        collisionData.canInteract = false;
+                    }
                 }
-                else if (hit.distance <= 0.1f)
+                else
                 {
                     collisionData.canInteract = true;
                 }
@@ -308,7 +324,7 @@ public class Controller2D : RaycastController
                 collisionData.canInteract = false;
             }
             
-            if (hit.distance <= 0.1f && otherCollider != null && otherCollider.gameObject != this.gameObject && otherCollider.CompareTag("Pushable"))
+            if (collisionData.canInteract && otherCollider.CompareTag("Pushable"))
             {
                 collisionData.canPushObject = true;
                 collisionData.left = directionX == -1;
@@ -317,8 +333,6 @@ public class Controller2D : RaycastController
             else
             {
                 collisionData.canPushObject = false;
-                collisionData.left = false;
-                collisionData.right =false;
             }
         }
         #endregion
