@@ -130,7 +130,7 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 1152
-  pushableMask:
+  interactablesMask:
     serializedVersion: 2
     m_Bits: 256
   maxSlopeAngle: 80
@@ -166,13 +166,11 @@ MonoBehaviour:
   glideGravityMultiplier: 0.05
   isGliding: 0
   isBoomeranging: 0
-  autoWallSlide: 1
   wallSlideSpeedMax: 5
   wallStickTime: 0
-  wallJumpClimb: {x: 25, y: 20}
-  wallJumpOff: {x: 20, y: 15}
-  wallLeap: {x: 35, y: 20}
+  wallJump: {x: 35, y: 20}
   isWallSliding: 0
+  canInteract: 0
   isInteracting: 0
   velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &3030541206826440572
@@ -232,10 +230,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8d9538af-0b45-41df-965f-089715326ea3
     m_ActionName: General/ActionBtn[/Keyboard/v]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 17876f78-6b94-42e9-9be1-3ea5acf6e90f
-    m_ActionName: General/Wall Slide[/Keyboard/z]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: General

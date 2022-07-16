@@ -70,11 +70,13 @@ public class Player : MonoBehaviour
     int wallDirX;
 
     [Header("INTERACTING")]
-    public bool isInteracting;
     public bool canInteract;
+    public bool isInteracting;
 
-    bool canPushObject;
-    bool isPushingObject;
+    public bool canPushObject;
+    public  bool isPushingObject;
+
+    private bool _interactInp;
 
     //Other
     [HideInInspector] public Vector3 velocity;
@@ -99,7 +101,7 @@ public class Player : MonoBehaviour
     {
         CalculateVelocity();
         Flip();
-        HandleActionBtn();
+        HandleInteractions();
         if (canMove)
         {
             HandleJump();
@@ -333,23 +335,37 @@ public class Player : MonoBehaviour
 
     void HandlePushObject()
     {
-        canPushObject = controller.collisionData.canPushObject;
-
-        if (canPushObject)
+        if (canInteract)
         {
-            isPushingObject = controller.collisionData.isPushingObject;
-        }
-    }
+            canPushObject = controller.collisionData.canPushObject;
 
-    void HandleActionBtn()
-    {
-        if (isInteracting)
-        {
-            directionalInput = new Vector4(directionalInput.x, directionalInput.y, directionalInput.z, 1f);
+            if (canPushObject)
+            {
+                isPushingObject = controller.collisionData.isPushingObject;
+            }
+            else
+            {
+                isPushingObject = false;
+            }
         }
         else
         {
-            directionalInput = new Vector4(directionalInput.x, directionalInput.y, directionalInput.z, 0f);
+            canPushObject = false;
+        }
+    }
+
+    void HandleInteractions()
+    {
+        canInteract = controller.collisionData.canInteract;
+
+        if (canInteract)
+        {
+            isInteracting = controller.collisionData.isInteracting;
+        }
+        else
+        {
+            isInteracting = false;
+            // directionalInput = new Vector4(directionalInput.x, directionalInput.y, directionalInput.z, 0f);
         }
     }
 
@@ -519,9 +535,15 @@ public class Player : MonoBehaviour
     #region ActionBtn
     public void OnActionBtnInput()
     {
-        if (canInteract)
+        if (directionalInput.w == 0f)
         {
-            isInteracting = !isInteracting;
+            print("0 to 1");
+            directionalInput = new Vector4(directionalInput.x, directionalInput.y, directionalInput.z, 1f);
+        }
+        else
+        {
+            print("1 to 0");
+            directionalInput = new Vector4(directionalInput.x, directionalInput.y, directionalInput.z, 0f);
         }
     }
     #endregion

@@ -1,5 +1,5 @@
 using UnityEngine;
-// ReSharper disable All
+//Resharper disable All
 
 public class Controller2D : RaycastController
 {
@@ -215,11 +215,12 @@ public class Controller2D : RaycastController
         Collider2D otherCollider = null;
 
         float directionX = collisionData.faceDir;
-        float rayLengthX = Mathf.Abs(moveAmount.x) + skinWidth;
+        float rayLengthModifier = 40f;
+        float rayLengthX = Mathf.Abs(moveAmount.x) + skinWidth * rayLengthModifier;
 
         if (Mathf.Abs(moveAmount.x) < skinWidth)
         {
-            rayLengthX = 2 * skinWidth;
+            rayLengthX = 2 * skinWidth * rayLengthModifier;
         }
 
         for (int i = 0; i < horizontalRayCount; i++)
@@ -247,7 +248,7 @@ public class Controller2D : RaycastController
             }
 
             Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLengthX, Color.yellow);
-
+            
             if (hit)
             {
                 if (hit.distance == 0)
@@ -278,31 +279,76 @@ public class Controller2D : RaycastController
 
                 if (!collisionData.isClimbingSlope || slopeAngle > maxSlopeAngle)
                 {
-                    moveAmount.x = (hit.distance - skinWidth) * directionX;
+                    if (hit.distance <= 0.09f && otherCollider.CompareTag("Pushable"))
+                    {
+                        moveAmount.x = (hit.distance - skinWidth) * directionX;
+                    }
                     rayLengthX = hit.distance;
-
+                
                     if (collisionData.isClimbingSlope)
                     {
                         moveAmount.y = Mathf.Tan(collisionData.slopeAngle * Mathf.Deg2Rad) * Mathf.Abs(moveAmount.x);
                     }
-
-                    collisionData.left = directionX == -1;
-                    collisionData.right = directionX == 1;
                 }
             }
+            
+            if (otherCollider != null)
+            {
+                if (!otherCollider.CompareTag("Pushable"))
+                {
+                    collisionData.canInteract = true;
+                }
+                else if (hit.distance <= 0.1f)
+                {
+                    collisionData.canInteract = true;
+                }
+            }
+            else
+            {
+                collisionData.canInteract = false;
+            }
+            
+            if (hit.distance <= 0.1f && otherCollider != null && otherCollider.gameObject != this.gameObject && otherCollider.CompareTag("Pushable"))
+            {
+                collisionData.canPushObject = true;
+                collisionData.left = directionX == -1;
+                collisionData.right = directionX == 1;
+            }
+            else
+            {
+                collisionData.canPushObject = false;
+                collisionData.left = false;
+                collisionData.right =false;
+            }
         }
-
-        if (otherCollider != null && otherCollider.gameObject != this.gameObject && otherCollider.CompareTag("Pushable"))
+        #endregion
+        
+        #region Interactions
+        if (collisionData.canInteract)
         {
-            collisionData.canPushObject = true;
-
             if (playerInput.w == 1f)
             {
-                collisionData.isPushingObject = true;
-                Vector2 pushAmount = otherCollider.gameObject.GetComponent<PushableObject>().Push(new Vector2(originalMoveAmountX, 0f));
-                moveAmount = new Vector2(pushAmount.x, moveAmount.y + pushAmount.y);
-                collisionData.left = false;
-                collisionData.right = false;
+                collisionData.isInteracting = true;
+            }
+            else
+            {
+                collisionData.isInteracting = false;
+            }
+            
+            if(collisionData.canPushObject)
+            {
+                if (collisionData.isInteracting)
+                {
+                    collisionData.isPushingObject = true;
+                    Vector2 pushAmount = otherCollider.gameObject.GetComponent<PushableObject>().Push(new Vector2(originalMoveAmountX, 0f));
+                    moveAmount = new Vector2(pushAmount.x, moveAmount.y + pushAmount.y);
+                    collisionData.left = false;
+                    collisionData.right = false;
+                }
+                else
+                {
+                    collisionData.isPushingObject = false;
+                }
             }
             else
             {
@@ -311,10 +357,8 @@ public class Controller2D : RaycastController
         }
         else
         {
-            collisionData.canPushObject = false;
-            collisionData.isPushingObject = false;
+            collisionData.isInteracting = false;
         }
-
         #endregion
 
         #region Vertical Collision
@@ -333,16 +377,20 @@ public class Controller2D : RaycastController
 
                 if (hit)
                 {
-                    moveAmount.y = (hit.distance - skinWidth) * directionY;
-                    rayLengthY = hit.distance;
-
-                    if (collisionData.isClimbingSlope)
+                    if (hit.collider.CompareTag("Pushable"))
                     {
-                        moveAmount.x = moveAmount.y / Mathf.Tan(collisionData.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign(moveAmount.x);
-                    }
+                        moveAmount.y = (hit.distance - skinWidth) * directionY;
+                        rayLengthY = hit.distance;
+    
+                        if (collisionData.isClimbingSlope)
+                        {
+                            moveAmount.x = moveAmount.y / Mathf.Tan(collisionData.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign(moveAmount.x);
+                        }
 
-                    collisionData.below = directionY == -1;
-                    collisionData.above = directionY == 1;
+                    
+                        collisionData.below = directionY == -1;
+                        collisionData.above = directionY == 1;
+                    }
                 }
             }
 
@@ -354,12 +402,15 @@ public class Controller2D : RaycastController
 
                 if (hit)
                 {
-                    float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
-                    if (slopeAngle != collisionData.slopeAngle)
+                    if (hit.collider.CompareTag("Pushable"))
                     {
-                        moveAmount.x = (hit.distance - skinWidth) * directionX;
-                        collisionData.slopeAngle = slopeAngle;
-                        collisionData.slopeNormal = hit.normal;
+                        float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+                        if (slopeAngle != collisionData.slopeAngle)
+                        {
+                            moveAmount.x = (hit.distance - skinWidth) * directionX;
+                            collisionData.slopeAngle = slopeAngle;
+                            collisionData.slopeNormal = hit.normal;
+                        }
                     }
                 }
             }
@@ -464,7 +515,7 @@ public class Controller2D : RaycastController
         public bool isSlidingDownSlope;
 
         public bool canInteract;
-        public bool isInteracring;
+        public bool isInteracting;
         
         public bool canPushObject;
         public bool isPushingObject;
