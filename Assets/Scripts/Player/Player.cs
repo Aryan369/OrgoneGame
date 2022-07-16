@@ -351,6 +351,7 @@ public class Player : MonoBehaviour
         else
         {
             canPushObject = false;
+            isPushingObject = false;
         }
     }
 
@@ -374,6 +375,7 @@ public class Player : MonoBehaviour
         else
         {
             isInteracting = false;
+            _interactInp = false;
         }
     }
 

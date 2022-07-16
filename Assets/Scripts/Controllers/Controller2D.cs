@@ -364,14 +364,11 @@ public class Controller2D : RaycastController
                     collisionData.isPushingObject = false;
                 }
             }
-            else
-            {
-                collisionData.isPushingObject = false;
-            }
         }
         else
         {
             collisionData.isInteracting = false;
+            collisionData.isPushingObject = false;
         }
         #endregion
 
