@@ -25,6 +25,9 @@ public class Boomerang : RaycastController
     Vector3 endPoint;
     [HideInInspector] public Vector2 directionalInput;
 
+    private SpriteRenderer sr;
+    private BoxCollider2D collider;
+
     #endregion
 
     protected override void Start()
@@ -32,6 +35,9 @@ public class Boomerang : RaycastController
         base.Start();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); ;
         _player = player.transform;
+
+        sr = GetComponent<SpriteRenderer>();
+        collider = GetComponent<BoxCollider2D>();
     }
 
     void FixedUpdate()
@@ -48,12 +54,20 @@ public class Boomerang : RaycastController
     #region Methods
     public void ActivateBoomerang()
     {
+        sr.enabled = true;
+        collider.enabled = true;
         transform.position = _player.position;
         startPoint = transform.position;
         distanceX = distance * directionalInput.x;
         distanceY = distance * directionalInput.y;
         endPoint = new Vector3(transform.position.x + distanceX, transform.position.y + distanceY);
         isBoomeranging = true;
+    }
+
+    void DeactivateBoomerang()
+    {
+        sr.enabled = false;
+        collider.enabled = false;
     }
 
     float Ease(float x)
@@ -92,6 +106,7 @@ public class Boomerang : RaycastController
                 }
                 else
                 {
+                    DeactivateBoomerang();
                     percentBetweenPoints = 0f;
                     isBoomeranging = false;
                     isReturning = false;

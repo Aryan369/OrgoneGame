@@ -984,6 +984,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 559198379871820521, guid: 684c5d7520b3a4d5a93040972f15a335, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 559198379871820524, guid: 684c5d7520b3a4d5a93040972f15a335, type: 3}
       propertyPath: m_Name
       value: Boomerang
@@ -1044,6 +1048,10 @@ PrefabInstance:
     - target: {fileID: 3030541206826440568, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3030541206826440569, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3030541206826440570, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
       propertyPath: m_Name
