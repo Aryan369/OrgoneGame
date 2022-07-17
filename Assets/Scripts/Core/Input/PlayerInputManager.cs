@@ -6,9 +6,11 @@ using UnityEngine.InputSystem;
 public class PlayerInputManager : MonoBehaviour
 {
     #region Variables
+    public static PlayerInputManager Instance;
+    
     Player player;
 
-    PlayerInput playerInput;
+    [HideInInspector] public PlayerInput playerInput;
 
     private InputAction moveAction;
     private InputAction jumpAction;
@@ -21,6 +23,15 @@ public class PlayerInputManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+        
         player = GetComponent<Player>();
         playerInput = GetComponent<PlayerInput>();
 

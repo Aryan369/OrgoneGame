@@ -26,7 +26,6 @@ public class Boomerang : RaycastController
     [HideInInspector] public Vector2 directionalInput;
 
     private SpriteRenderer sr;
-    private BoxCollider2D collider;
 
     #endregion
 

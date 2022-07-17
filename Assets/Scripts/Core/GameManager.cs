@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
+        PlayerInputManager.Instance.playerInput.SwitchCurrentActionMap("UI");
         _gameState = GameState.Paused;
     }
 
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.UnloadScene("PauseMenu");
+        PlayerInputManager.Instance.playerInput.SwitchCurrentActionMap("Gameplay");
         _gameState = GameState.Play;
     }
 }
