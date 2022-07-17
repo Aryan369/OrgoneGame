@@ -35,7 +35,7 @@ public class CameraEffects : MonoBehaviour
 
     void Update()
     {
-        //player.GetComponent<CharacterController2D>().cameraEffects = this;
+        // player.GetComponent<Player>().cameraEffects = this;
         multiChannelPerlin.m_FrequencyGain += (0 - multiChannelPerlin.m_FrequencyGain) * Time.deltaTime * (10 - shakeLength);
     }
 

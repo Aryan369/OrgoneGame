@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+//ReSharper disable All
 
 [RequireComponent(typeof(Player), typeof(PlayerInput))]
 public class PlayerInputManager : MonoBehaviour
@@ -7,13 +8,13 @@ public class PlayerInputManager : MonoBehaviour
     #region Variables
     Player player;
 
-    [HideInInspector] public PlayerInput playerInput;
+    PlayerInput playerInput;
 
     private InputAction moveAction;
     private InputAction jumpAction;
     private InputAction glideAction;
     private InputAction walkAction;
-    private InputAction actionBtnAction;
+    private InputAction interactAction;
 
     #endregion
 
@@ -27,7 +28,7 @@ public class PlayerInputManager : MonoBehaviour
         jumpAction = playerInput.actions["Jump"];
         glideAction = playerInput.actions["Glide"];
         walkAction = playerInput.actions["Walk"];
-        actionBtnAction = playerInput.actions["ActionBtn"];
+        interactAction = playerInput.actions["Interact"];
 
         jumpAction.started += Jump;
         jumpAction.canceled += Jump;
@@ -38,14 +39,14 @@ public class PlayerInputManager : MonoBehaviour
         walkAction.started += Walk;
         walkAction.canceled += Walk;
 
-        actionBtnAction.performed += ActionBtn;
+        interactAction.performed += InteractActionBtn;
     }
 
     void Update()
     {
         Vector2 directionalInput = moveAction.ReadValue<Vector2>();
         player.SetDirectionalInput(directionalInput);
-
+        
         #region Crouch
         if (directionalInput.x == 0f)
         {
@@ -128,12 +129,12 @@ public class PlayerInputManager : MonoBehaviour
     }
     #endregion
 
-    #region Action Btn
-    void ActionBtn(InputAction.CallbackContext ctx)
+    #region Interact
+    void InteractActionBtn(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
         {
-            player.OnActionBtnInput();
+            player.OnInteractInput();
         }
     }
     #endregion

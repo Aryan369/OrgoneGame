@@ -557,8 +557,8 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    #region ActionBtn
-    public void OnActionBtnInput()
+    #region Interact
+    public void OnInteractInput()
     {
         if (canInteract)
         {
