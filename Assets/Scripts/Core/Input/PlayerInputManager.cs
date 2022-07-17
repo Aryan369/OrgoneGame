@@ -7,7 +7,7 @@ public class PlayerInputManager : MonoBehaviour
     #region Variables
     Player player;
 
-    private PlayerInput playerInput;
+    [HideInInspector] public PlayerInput playerInput;
 
     private InputAction moveAction;
     private InputAction jumpAction;
