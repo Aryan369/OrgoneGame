@@ -59,12 +59,13 @@ public class Player : MonoBehaviour
     public bool isBoomeranging;
     Boomerang boomerang;
 
-    [Header("WALL SLIDE")]
+    [Header("WALL SLIDE")] 
     public float wallSlideSpeedMax = 5f;
     public float wallStickTime = 0f;
     [SerializeField] Vector2 wallJump = new Vector2(35f, 20f);
 
-    public bool isWallSliding;
+    [SerializeField] bool canSlideOnObjects;
+    bool isWallSliding;
 
     float timeToWallUnstick;
     int wallDirX;
@@ -267,7 +268,21 @@ public class Player : MonoBehaviour
     {
         if ((controller.collisionData.left || controller.collisionData.right) && !controller.collisionData.below && velocity.y < 0)
         {
-            isWallSliding = true;
+            if (canPushObject)
+            {
+                if (canSlideOnObjects)
+                {
+                    isWallSliding = true;
+                }
+                else
+                {
+                    isWallSliding = false;
+                }
+            }
+            else
+            {
+                isWallSliding = true;
+            }
         }
         else
         {
