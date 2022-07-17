@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 // ReSharper disable All
 
-[RequireComponent(typeof(Controller2D), typeof(InputManager))]
+[RequireComponent(typeof(Controller2D), typeof(PlayerInputManager))]
 public class Player : MonoBehaviour
 {
     #region Variables & Constants
