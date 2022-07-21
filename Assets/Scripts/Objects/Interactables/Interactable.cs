@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
@@ -8,7 +6,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] private Sprite cue0;
     [SerializeField] private Sprite cue1;
-    private SpriteRenderer sr;
+    private SpriteRenderer _sr;
     
     public bool _inRange { get; private set; }
     private bool _inRangeOld;
@@ -17,8 +15,8 @@ public class Interactable : MonoBehaviour
     
     private void Start()
     {
-        sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        sr.sprite = cue0;
+        _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        _sr.sprite = cue0;
         _controller = FindObjectOfType<Player>().GetComponent<Controller2D>();
     }
 
@@ -50,11 +48,11 @@ public class Interactable : MonoBehaviour
         {
             if (_inRange)
             {
-                sr.sprite = cue1;
+                _sr.sprite = cue1;
             }
             else
             {
-                sr.sprite = cue0;
+                _sr.sprite = cue0;
             }
 
             _controller.collisionData.canInteract = _inRange;

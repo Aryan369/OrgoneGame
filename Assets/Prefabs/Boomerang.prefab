@@ -127,10 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 128
-  interactablesMask:
-    serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 384
   speed: 13
   distance: 13
   waitTime: 0.15
@@ -197,6 +194,15 @@ TrailRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.91047615
+        value: 0.04954955
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

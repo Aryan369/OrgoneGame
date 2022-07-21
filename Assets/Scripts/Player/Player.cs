@@ -346,6 +346,15 @@ public class Player : MonoBehaviour
             isInteracting = false;
             _interactInp = false;
         }
+
+        if (isInteracting && !canPushObject)
+        {
+            canMove = false;
+        }
+        else
+        {
+            canMove = true;
+        }
     }
 
 
