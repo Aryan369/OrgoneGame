@@ -388,7 +388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1045201527
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -816,7 +816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1465872591
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1261,6 +1261,10 @@ PrefabInstance:
     - target: {fileID: 3030541206826440570, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3030541206826440574, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
+      propertyPath: pushableMask.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
