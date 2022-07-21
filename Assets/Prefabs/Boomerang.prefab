@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 896
   speed: 13
   distance: 13
   waitTime: 0.15

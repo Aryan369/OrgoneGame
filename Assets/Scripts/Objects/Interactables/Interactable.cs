@@ -8,8 +8,6 @@ public class Interactable : MonoBehaviour
     [SerializeField] private Sprite cue1;
     private SpriteRenderer _sr;
 
-    [SerializeField] private float test;
-    
     public bool _inRange { get; private set; }
     private bool _inRangeOld;
 
@@ -70,7 +68,7 @@ public class Interactable : MonoBehaviour
     {
         if (_inRange && _controller.collisionData.isInteracting)
         {
-            print(test);
+            print("Do Something");
             _controller.collisionData.isInteracting = false;
         }
     }

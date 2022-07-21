@@ -4,13 +4,4 @@ using UnityEngine;
 
 public interface ISaveable
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }

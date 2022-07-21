@@ -17,6 +17,7 @@ public class PlayerInputManager : MonoBehaviour
     private InputAction glideAction;
     private InputAction walkAction;
     private InputAction interactAction;
+    private InputAction RinneganAction;
 
     #endregion
 
@@ -40,6 +41,7 @@ public class PlayerInputManager : MonoBehaviour
         glideAction = playerInput.actions["Glide"];
         walkAction = playerInput.actions["Walk"];
         interactAction = playerInput.actions["Interact"];
+        RinneganAction = playerInput.actions["Rinnegan"];
 
         jumpAction.started += Jump;
         jumpAction.canceled += Jump;
@@ -50,7 +52,10 @@ public class PlayerInputManager : MonoBehaviour
         walkAction.started += Walk;
         walkAction.canceled += Walk;
 
-        interactAction.performed += InteractActionBtn;
+        interactAction.performed += Interact;
+
+        RinneganAction.started += Rinnegan;
+        RinneganAction.canceled += Rinnegan;
     }
 
     void Update()
@@ -125,7 +130,7 @@ public class PlayerInputManager : MonoBehaviour
         {
             player.OnWalkInputPressed();
         }
-
+    
         if (ctx.canceled)
         {
             player.OnWalkInputReleased();
@@ -134,7 +139,7 @@ public class PlayerInputManager : MonoBehaviour
     #endregion
 
     #region Interact
-    void InteractActionBtn(InputAction.CallbackContext ctx)
+    void Interact(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
         {
@@ -143,5 +148,19 @@ public class PlayerInputManager : MonoBehaviour
     }
     #endregion
 
+    #region Rinnegan
+    void Rinnegan(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            player.OnRinneganInputPressed();
+        }
+    
+        if (ctx.canceled)
+        {
+            player.OnRinneganInputReleased();
+        }
+    }
+    #endregion
     #endregion
 }

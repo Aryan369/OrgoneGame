@@ -49,6 +49,13 @@ public class Player : MonoBehaviour
     private float glideGravity;
     [HideInInspector] public bool isGliding;
 
+    [Header("RINNEGAN")] 
+    public float range = 25f;
+    public bool isUsingRinnegan;
+    public bool canTeleport;
+    public bool isTeleporting;
+    private Rinnegan rinnegan;
+    
     [Header("BOOMERANG")]
     [HideInInspector] public bool isBoomeranging;
     private Boomerang boomerang;
@@ -65,13 +72,13 @@ public class Player : MonoBehaviour
     private int wallDirX;
 
     [Header("INTERACTING")]
-    public bool canInteract;
-    public bool isInteracting;
+    private bool canInteract;
+    private bool isInteracting;
 
-    public bool canPushObject;
-    public bool isPushingObject;
+    private bool canPushObject;
+    private bool isPushingObject;
 
-    public bool _interactInp;
+    private bool _interactInp;
 
     //Other
     [HideInInspector] public Vector3 velocity;
@@ -85,6 +92,8 @@ public class Player : MonoBehaviour
     {
         controller = GetComponent<Controller2D>();
         boomerang = GameObject.FindGameObjectWithTag("Boomerang").GetComponent<Boomerang>();
+        rinnegan = GetComponentInChildren<Rinnegan>();
+        rinnegan.SetRange(range);
 
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -103,6 +112,7 @@ public class Player : MonoBehaviour
             HandleGlide();
             HandleCrouch();
             StartCoroutine(HandleRoll());
+            HandleRinnegan();
             HandlePushObject();
             HandleWallSliding();
             HandleClampedFallSpeed();
@@ -388,6 +398,22 @@ public class Player : MonoBehaviour
     }
 
 
+    void HandleRinnegan()
+    {
+        if (isUsingRinnegan)
+        {
+            GameManager.Instance._gameState = GameState.Rinnegan;
+            canTeleport = true;
+            Time.timeScale = 0.4f;
+        }
+        else
+        {
+            GameManager.Instance._gameState = GameState.Play;
+            canTeleport = false;
+            Time.timeScale = 1f;
+        }
+    }
+
     void CalculateVelocity()
     {
         if (canMove)
@@ -417,10 +443,13 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Input
+
+    #region Directional Input
     public void SetDirectionalInput(Vector2 input)
     {
         directionalInput = input;
     }
+    #endregion
 
     #region Jump
     public void OnJumpInputPressed()
@@ -528,6 +557,21 @@ public class Player : MonoBehaviour
     public void OnBoomerangInput()
     {
         HandleBoomerang();
+    }
+    #endregion
+
+    #region Aminotejikara
+
+    public void OnRinneganInputPressed()
+    {
+        isUsingRinnegan = true;
+        rinnegan._isUsingRinnegan = isUsingRinnegan;
+    }
+
+    public void OnRinneganInputReleased()
+    {
+        isUsingRinnegan = false;
+        rinnegan._isUsingRinnegan = isUsingRinnegan;
     }
     #endregion
 

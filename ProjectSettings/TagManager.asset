@@ -7,6 +7,7 @@ TagManager:
   - Platform Effector
   - Pushable
   - Boomerang
+  - Amenotejikara
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Player
   - Ground
   - Interactables
-  - 
+  - Aminotejikara
   - 
   - 
   - 

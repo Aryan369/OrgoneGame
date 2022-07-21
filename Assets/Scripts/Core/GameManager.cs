@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    private GameState _gameState = GameState.Play;
+    public GameState _gameState = GameState.Play;
 
     private void Awake()
     {
@@ -75,5 +75,6 @@ public class GameManager : MonoBehaviour
 public enum GameState
 {
     Play,
-    Paused
+    Paused,
+    Rinnegan
 }
