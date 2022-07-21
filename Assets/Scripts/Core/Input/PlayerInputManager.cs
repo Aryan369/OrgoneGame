@@ -58,7 +58,7 @@ public class PlayerInputManager : MonoBehaviour
         Vector2 directionalInput = moveAction.ReadValue<Vector2>();
         player.SetDirectionalInput(directionalInput);
         
-        #region Crouch
+        #region Crouch & Roll
         if (directionalInput.x == 0f)
         {
             if (directionalInput.y == -1f)
@@ -70,12 +70,12 @@ public class PlayerInputManager : MonoBehaviour
                 player.OnCrouchInputUp();
             }
         }
-        #endregion
-
-        #region Roll
-        if(Mathf.Abs(directionalInput.x) > 0f && directionalInput.y == -1f)
+        else
         {
-            player.OnRollInput();
+            if (directionalInput.y < -0.5f)
+            {
+                player.OnRollInput();
+            }
         }
         #endregion
 

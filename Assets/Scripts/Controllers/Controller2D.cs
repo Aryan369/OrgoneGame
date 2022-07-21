@@ -73,10 +73,10 @@ public class Controller2D : RaycastController
         }
 
         HorizontalCollisions(ref moveAmount);
-        if (!isPushable)
-        {
-            InteractablesCollisions(ref moveAmount);
-        }
+        // if (!isPushable)
+        // {
+        //     InteractablesCollisions(ref moveAmount);
+        // }
         
         if (moveAmount.y != 0)
         {

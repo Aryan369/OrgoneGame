@@ -13,16 +13,16 @@ public class Boomerang : RaycastController
     [HideInInspector] public bool isReturning;
     [HideInInspector] public bool onReturn;
 
-    float distanceX;
-    float distanceY;
+    private float distanceX;
+    private float distanceY;
 
-    float percentBetweenPoints;
-    float nextMoveTime;
+    private float percentBetweenPoints;
+    private float nextMoveTime;
 
     private Player player;
     private Transform _player;
-    Vector3 startPoint;
-    Vector3 endPoint;
+    private Vector3 startPoint;
+    private Vector3 endPoint;
     [HideInInspector] public Vector2 directionalInput;
 
     private SpriteRenderer sr;

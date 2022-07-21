@@ -16,68 +16,68 @@ public class Player : MonoBehaviour
     public float accelerationAirborne = .1f;
     public float clampedFallSpeed = 30f;
 
-    bool canMove = true;
-    bool isCrouching;
-    bool isWalking;
-    bool isGrounded;
+    private bool canMove = true;
+    private bool isCrouching;
+    private bool isWalking;
+    private bool isGrounded;
 
     [Header("JUMP")]
     public float maxJumpHeight = 4f;
     public float minJumpHeight = 1f;
     public float timeToJumpApex = .4f;
 
-    float coyoteTime = .2f;
-    float coyoteTimeCounter;
+    private float coyoteTime = .2f;
+    private float coyoteTimeCounter;
 
     [HideInInspector] public float jumpBufferTime = .2f;
     [HideInInspector] public float jumpBufferTimeCounter;
 
     [HideInInspector] public bool isJumping;
 
-    float maxJumpVelocity;
-    float minJumpVelocity;
-    float gravity;
+    private float maxJumpVelocity;
+    private float minJumpVelocity;
+    private float gravity;
 
     [Header("ROLL")]
     public float rollDistance = 10f;
     public float rollTime = .175f;
-    bool canRoll;
-    bool isRolling;
+    public bool canRoll;
+    public bool isRolling;
 
     [Header("GLIDE")]
     public float glideGravityMultiplier = 0.05f;
-    float glideGravity;
+    private float glideGravity;
     [HideInInspector] public bool isGliding;
 
     [Header("BOOMERANG")]
     [HideInInspector] public bool isBoomeranging;
-    Boomerang boomerang;
+    private Boomerang boomerang;
 
     [Header("WALL SLIDE")] 
     public float wallSlideSpeedMax = 5f;
     public float wallStickTime = 0.1f;
-    [SerializeField] Vector2 wallJump = new Vector2(35f, 20f);
+    [SerializeField] private Vector2 wallJump = new Vector2(35f, 20f);
 
-    [SerializeField] bool canSlideOnObjects;
-    bool isWallSliding;
+    [SerializeField] private bool canSlideOnObjects;
+    private bool isWallSliding;
 
-    float timeToWallUnstick;
-    int wallDirX;
+    private float timeToWallUnstick;
+    private int wallDirX;
 
     [Header("INTERACTING")]
-    bool canInteract;
-    bool isInteracting;
+    private bool canInteract;
+    private bool isInteracting;
 
-    bool canPushObject;
-    bool isPushingObject;
+    private bool canPushObject;
+    private bool isPushingObject;
 
-    bool _interactInp;
+    private bool _interactInp;
 
     //Other
     [HideInInspector] public Vector3 velocity;
-    float velocityXSmoothing;
+    private float velocityXSmoothing;
 
-    Vector4 directionalInput; // z = isCrouching, w = isInteracting
+    private Vector4 directionalInput; // z = isCrouching, w = isInteracting
     #endregion
 
 
@@ -102,6 +102,7 @@ public class Player : MonoBehaviour
             HandleJump();
             HandleGlide();
             HandleCrouch();
+            StartCoroutine(HandleRoll());
             HandlePushObject();
             HandleWallSliding();
             HandleClampedFallSpeed();
@@ -196,10 +197,9 @@ public class Player : MonoBehaviour
 
     IEnumerator HandleRoll()
     {
-        if (canMove && isGrounded)
+        if (canMove && isGrounded && isRolling)
         {
             canRoll = false;
-            isRolling = true;
             isCrouching = true;
             float rollVelocity = rollDistance / rollTime;
 
@@ -207,11 +207,12 @@ public class Player : MonoBehaviour
             velocity.y = 0f;
 
             //impulseSource.GenerateImpulse(new Vector3(10, 10));
-            cameraEffects.Shake(8f, 0.01f);
+            // cameraEffects.Shake(8f, 0.01f);
 
             yield return new WaitForSeconds(rollTime);
 
-            velocity.x = controller.collisionData.faceDir;
+            // velocity.x = controller.collisionData.faceDir;
+            velocity.x = 0f;
             isRolling = false;
             isCrouching = false;
         }
@@ -496,7 +497,8 @@ public class Player : MonoBehaviour
     {
         if (canRoll)
         {
-            StartCoroutine(HandleRoll());
+            // StartCoroutine(HandleRoll());
+            isRolling = true;
         }
     }
     #endregion
