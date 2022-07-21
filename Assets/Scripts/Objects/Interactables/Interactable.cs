@@ -24,6 +24,7 @@ public class Interactable : MonoBehaviour
     {
         Collision();
         CheckInRange();
+        CheckInteraction();
     }
 
     private void Collision()
@@ -46,6 +47,8 @@ public class Interactable : MonoBehaviour
     {
         if (_inRange != _inRangeOld)
         {
+            _controller.collisionData.inRange = _inRange;
+            
             if (_inRange)
             {
                 _sr.sprite = cue1;
@@ -59,6 +62,15 @@ public class Interactable : MonoBehaviour
         }
 
         _inRangeOld = _inRange;
+    }
+
+    void CheckInteraction()
+    {
+        if (_controller.collisionData.isInteracting)
+        {
+            print("Hello!");
+            _controller.collisionData.isInteracting = false;
+        }
     }
 
     private void OnDrawGizmos()

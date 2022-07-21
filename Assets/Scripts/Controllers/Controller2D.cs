@@ -305,8 +305,11 @@ public class Controller2D : RaycastController
             }
             else
             {
-                collisionData.canInteract = false;
-                collisionData.canPushObject = false;
+                if (!collisionData.inRange)
+                {
+                    collisionData.canInteract = false;
+                    collisionData.canPushObject = false;
+                }
             }
         }
         #endregion
@@ -504,6 +507,7 @@ public class Controller2D : RaycastController
 
         public bool canInteract;
         public bool isInteracting;
+        public bool inRange;
         
         public bool canPushObject;
         public bool isPushingObject;
