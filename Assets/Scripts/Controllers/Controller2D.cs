@@ -11,7 +11,6 @@ public class Controller2D : RaycastController
     public float maxSlopeAngle = 80f;
 
     Vector4 playerInput;
-    private bool isPushable;
 
     #endregion
 
@@ -19,11 +18,6 @@ public class Controller2D : RaycastController
     {
         base.Start();
         collisionData.faceDir = 1;
-
-        if (gameObject.CompareTag("Pushable"))
-        {
-            isPushable = true;
-        }
     }
 
     #region Methods
@@ -73,7 +67,7 @@ public class Controller2D : RaycastController
         }
 
         HorizontalCollisions(ref moveAmount);
-        InteractableCollisions(ref moveAmount);
+        PushableCollisions(ref moveAmount);
         
         if (moveAmount.y != 0)
         {
@@ -221,7 +215,7 @@ public class Controller2D : RaycastController
         }
     }
 
-    void InteractableCollisions(ref Vector2 moveAmount)
+    void PushableCollisions(ref Vector2 moveAmount)
     {
         #region Horizontal Collision
         float originalMoveAmountX = moveAmount.x;
@@ -477,7 +471,7 @@ public class Controller2D : RaycastController
                 if (collisionData.isInteracting)
                 {
                     collisionData.isPushingObject = true;
-                    Vector2 pushAmount = otherCollider.gameObject.GetComponent<PushableObject>().Push(new Vector2(originalMoveAmountX, 0f));
+                    Vector2 pushAmount = otherCollider.gameObject.GetComponent<Pushable>().Push(new Vector2(originalMoveAmountX, 0f));
                     moveAmount = new Vector2(pushAmount.x, moveAmount.y + pushAmount.y);
                     collisionData.left = false;
                     collisionData.right = false;

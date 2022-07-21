@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Controller2D))]
-public class PushableObject : MonoBehaviour
+public class Pushable : MonoBehaviour
 {
 	Controller2D controller;
 	Vector2 velocity;
