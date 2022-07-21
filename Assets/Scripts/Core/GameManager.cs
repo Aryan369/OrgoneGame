@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         Time.timeScale = 1f;
-        SceneManager.UnloadScene("PauseMenu");
+        SceneManager.UnloadSceneAsync("PauseMenu");
         PlayerInputManager.Instance.playerInput.SwitchCurrentActionMap("Gameplay");
         _gameState = GameState.Play;
     }

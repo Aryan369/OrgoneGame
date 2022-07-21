@@ -4,6 +4,7 @@ using UnityEngine;
 public class Controller2D : RaycastController
 {
     #region Variables & Constants
+    public LayerMask interactablesMask;
     public CollisionData collisionData;
 
     [Header("SLOPE")]
@@ -39,21 +40,27 @@ public class Controller2D : RaycastController
     {
         playerInput = _input;
 
-        if (playerInput.z == 1f)
+        if (playerInput.z != collisionData.crouchInpOld)
         {
-            collider.size = new Vector2(1f, .5f);
-            collider.offset = new Vector2(0f, -.25f);
-        }
-        else
-        {
-            collider.size = colliderSize;
-            collider.offset = Vector2.zero;
+            if (playerInput.z == 1f)
+            {
+                collider.size = new Vector2(1f, .5f);
+                collider.offset = new Vector2(0f, -.25f);
+            }
+            else
+            {
+                collider.size = colliderSize;
+                collider.offset = Vector2.zero;
+            }
+            
+            CalculateRaySpacing();
         }
 
         UpdateRaycastOrigins();
 
         collisionData.Reset();
         collisionData.moveAmountOld = moveAmount;
+        collisionData.crouchInpOld = playerInput.z;
 
         if (moveAmount.y < 0)
         {
@@ -538,6 +545,7 @@ public class Controller2D : RaycastController
         public bool fallingThroughPlatform;
 
         public Vector2 moveAmountOld;
+        public float crouchInpOld;
 
         public void Reset()
         {

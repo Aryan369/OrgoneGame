@@ -10,7 +10,6 @@ public class RaycastController : MonoBehaviour
 
     [Header("RAYCAST")]
     public LayerMask collisionMask;
-    public LayerMask interactablesMask;
 
     const float distBetweenRays = .2f;
 
@@ -37,8 +36,6 @@ public class RaycastController : MonoBehaviour
     #region Raycast Origin & Spacing Methods
     protected void UpdateRaycastOrigins()
     {
-        CalculateRaySpacing();
-
         Bounds bounds = collider.bounds;
         bounds.Expand(skinWidth * -2);
 

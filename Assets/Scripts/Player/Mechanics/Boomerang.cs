@@ -26,6 +26,7 @@ public class Boomerang : RaycastController
     [HideInInspector] public Vector2 directionalInput;
 
     private SpriteRenderer sr;
+    private TrailRenderer tr;
 
     #endregion
 
@@ -36,6 +37,9 @@ public class Boomerang : RaycastController
         _player = player.transform;
 
         sr = GetComponent<SpriteRenderer>();
+        tr = GetComponent<TrailRenderer>();
+        
+        DeactivateBoomerang();
     }
 
     void FixedUpdate()
@@ -52,19 +56,21 @@ public class Boomerang : RaycastController
     #region Methods
     public void ActivateBoomerang()
     {
-        sr.enabled = true;
-        collider.enabled = true;
         transform.position = _player.position;
         startPoint = transform.position;
         distanceX = distance * directionalInput.x;
         distanceY = distance * directionalInput.y;
         endPoint = new Vector3(transform.position.x + distanceX, transform.position.y + distanceY);
+        sr.enabled = true;
+        tr.enabled = true;
+        collider.enabled = true;
         isBoomeranging = true;
     }
 
     void DeactivateBoomerang()
     {
         sr.enabled = false;
+        tr.enabled = false;
         collider.enabled = false;
     }
 

@@ -302,8 +302,24 @@ PrefabInstance:
       value: 8.19549
       objectReference: {fileID: 0}
     - target: {fileID: 20682906277557268, guid: e717926c164954cc697ed3ef8ccf6a32, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 20682906277557268, guid: e717926c164954cc697ed3ef8ccf6a32, type: 3}
       propertyPath: orthographic size
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 20682906277557268, guid: e717926c164954cc697ed3ef8ccf6a32, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.2924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 20682906277557268, guid: e717926c164954cc697ed3ef8ccf6a32, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.2667334
+      objectReference: {fileID: 0}
+    - target: {fileID: 20682906277557268, guid: e717926c164954cc697ed3ef8ccf6a32, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.2524475
       objectReference: {fileID: 0}
     - target: {fileID: 114803846852594790, guid: e717926c164954cc697ed3ef8ccf6a32, type: 3}
       propertyPath: m_Lens.OrthographicSize
@@ -616,9 +632,6 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 128
-  interactablesMask:
-    serializedVersion: 2
-    m_Bits: 256
   passengerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -946,11 +959,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 559198379871820520, guid: 684c5d7520b3a4d5a93040972f15a335, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.440001
+      value: -19.2
       objectReference: {fileID: 0}
     - target: {fileID: 559198379871820520, guid: 684c5d7520b3a4d5a93040972f15a335, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.58
+      value: -6.1
       objectReference: {fileID: 0}
     - target: {fileID: 559198379871820520, guid: 684c5d7520b3a4d5a93040972f15a335, type: 3}
       propertyPath: m_LocalPosition.z
@@ -985,12 +998,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 559198379871820521, guid: 684c5d7520b3a4d5a93040972f15a335, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 559198379871820523, guid: 684c5d7520b3a4d5a93040972f15a335, type: 3}
-      propertyPath: waitTime
-      value: 0.15
+    - target: {fileID: 559198379871820522, guid: 684c5d7520b3a4d5a93040972f15a335, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 559198379871820524, guid: 684c5d7520b3a4d5a93040972f15a335, type: 3}
       propertyPath: m_Name
@@ -1049,6 +1062,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3030541206826440569, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3030541206826440570, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1065,6 +1082,10 @@ PrefabInstance:
     - target: {fileID: 6412363912667383041, guid: e7c7d1a71b6b9467abb64acb02037a46, type: 3}
       propertyPath: m_Name
       value: Pushable Object
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412363912667383051, guid: e7c7d1a71b6b9467abb64acb02037a46, type: 3}
+      propertyPath: interactablesMask.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 6412363912667383055, guid: e7c7d1a71b6b9467abb64acb02037a46, type: 3}
       propertyPath: m_RootOrder
