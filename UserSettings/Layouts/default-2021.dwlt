@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 514
+  controlID: 32
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 515
+  controlID: 33
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 139
+  controlID: 19
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -215,8 +215,8 @@ MonoBehaviour:
     y: 0
     width: 822
     height: 436.5
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -308,8 +308,8 @@ MonoBehaviour:
     m_SaveData: []
   m_ActionMapsTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9fd8fca1
-    m_LastClickedID: -1577264993
+    m_SelectedIDs: d0632ce7
+    m_LastClickedID: -416521264
     m_ExpandedIDs: 00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -330,9 +330,9 @@ MonoBehaviour:
     m_SearchString: 
   m_ActionsTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: bfbb95859fd8fca1d85801d576bd5bfb8dfe1d27089185546f65ae7a
+    m_SelectedIDs: aadfea14
+    m_LastClickedID: 350937002
+    m_ExpandedIDs: bfbb95859fd8fca1d85801d58dfe1d27089185546f65ae7a
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -384,8 +384,8 @@ MonoBehaviour:
         selectedIndex: -1
         scroll: {x: 0, y: 0}
       - itemId: 1275948795
-        selectedIndex: 0
-        scroll: {x: 0, y: 0}
+        selectedIndex: 2
+        scroll: {x: 0, y: 63.5}
       - itemId: -1184013745
         selectedIndex: -1
         scroll: {x: 0, y: 0}
@@ -401,13 +401,16 @@ MonoBehaviour:
       - itemId: 1919352497
         selectedIndex: -1
         scroll: {x: 0, y: 0}
+      - itemId: 998472819
+        selectedIndex: -1
+        scroll: {x: 0, y: 0}
     m_ManualPathEditMode: 0
   m_ActionAssetManager:
     m_AssetObjectForEditing: {fileID: 0}
     m_ImportedAssetObject: {fileID: -944628639613478452, guid: 3c416017e16e145eb87ea5193db1e50a, type: 3}
     m_AssetGUID: 3c416017e16e145eb87ea5193db1e50a
     m_ImportedAssetJson: "{\n    \"name\": \"PlayerControls\",\n    \"maps\": [\n       
-      {\n            \"name\": \"General\",\n            \"id\": \"f39c22d8-1b79-4fd0-a7d6-0e319937be2c\",\n           
+      {\n            \"name\": \"Gameplay\",\n            \"id\": \"f39c22d8-1b79-4fd0-a7d6-0e319937be2c\",\n           
       \"actions\": [\n                {\n                    \"name\": \"Move\",\n                   
       \"type\": \"Value\",\n                    \"id\": \"2be30901-b09d-4fc2-b15f-d07187391b01\",\n                   
       \"expectedControlType\": \"Vector2\",\n                    \"processors\":
@@ -425,7 +428,7 @@ MonoBehaviour:
       \"type\": \"Button\",\n                    \"id\": \"c5adae23-1cb1-49d8-8bdb-ea19239d47e2\",\n                   
       \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
       \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
-      },\n                {\n                    \"name\": \"ActionBtn\",\n                   
+      },\n                {\n                    \"name\": \"Interact\",\n                   
       \"type\": \"Button\",\n                    \"id\": \"8d9538af-0b45-41df-965f-089715326ea3\",\n                   
       \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
       \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
@@ -520,18 +523,20 @@ MonoBehaviour:
       \"\",\n                    \"action\": \"Walk\",\n                    \"isComposite\":
       false,\n                    \"isPartOfComposite\": false\n                },\n               
       {\n                    \"name\": \"\",\n                    \"id\": \"a46dfe3c-172a-454e-9682-2a533eee8d40\",\n                   
-      \"path\": \"<Keyboard>/v\",\n                    \"interactions\": \"\",\n                   
+      \"path\": \"<Keyboard>/e\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"Keyboard & Mouse\",\n                   
-      \"action\": \"ActionBtn\",\n                    \"isComposite\": false,\n                   
+      \"action\": \"Interact\",\n                    \"isComposite\": false,\n                   
       \"isPartOfComposite\": false\n                },\n                {\n                   
       \"name\": \"\",\n                    \"id\": \"45712a22-c1e7-4972-a65f-fd217c7270c7\",\n                   
       \"path\": \"<Gamepad>/buttonWest\",\n                    \"interactions\":
       \"\",\n                    \"processors\": \"\",\n                    \"groups\":
-      \"Gamepad\",\n                    \"action\": \"ActionBtn\",\n                   
+      \"Gamepad\",\n                    \"action\": \"Interact\",\n                   
       \"isComposite\": false,\n                    \"isPartOfComposite\": false\n               
-      }\n            ]\n        }\n    ],\n    \"controlSchemes\": [\n        {\n           
-      \"name\": \"Keyboard & Mouse\",\n            \"bindingGroup\": \"Keyboard &
-      Mouse\",\n            \"devices\": [\n                {\n                   
+      }\n            ]\n        },\n        {\n            \"name\": \"UI\",\n           
+      \"id\": \"e61e9e45-9ba8-4480-bd60-d2bd800660f8\",\n            \"actions\":
+      [],\n            \"bindings\": []\n        }\n    ],\n    \"controlSchemes\":
+      [\n        {\n            \"name\": \"Keyboard & Mouse\",\n            \"bindingGroup\":
+      \"Keyboard & Mouse\",\n            \"devices\": [\n                {\n                   
       \"devicePath\": \"<Keyboard>\",\n                    \"isOptional\": false,\n                   
       \"isOR\": false\n                },\n                {\n                   
       \"devicePath\": \"<Mouse>\",\n                    \"isOptional\": false,\n                   
@@ -598,7 +603,7 @@ MonoBehaviour:
   m_SerializedViewNames: []
   m_SerializedViewValues: []
   m_PlayModeViewName: GameView
-  m_ShowGizmos: 1
+  m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
   m_TargetSize: {x: 1640, y: 789}
@@ -608,7 +613,7 @@ MonoBehaviour:
   m_EnterPlayModeBehavior: 0
   m_UseMipMap: 0
   m_VSyncEnabled: 0
-  m_Gizmos: 1
+  m_Gizmos: 0
   m_Stats: 0
   m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
@@ -692,18 +697,18 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 5cf5ffff06fbffff
+      m_ExpandedIDs: ac88ffff0889ffff4c89ffff9e98fffffe9dffffa0c4ffffd2c5ffff9edaffff6adbffff10e5ffff06fbffff448b0000788b0000908f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Player Holder
-        m_OriginalName: Player Holder
+        m_Name: Cameras
+        m_OriginalName: Cameras
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -2724
+        m_UserData: -30458
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -963,9 +968,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1.3902822, y: 5.0171385, z: -0.15671073}
+    m_Target: {x: -1.3165609, y: 6.3070087, z: -0.09271759}
     speed: 2
-    m_Value: {x: 1.3902822, y: 5.0171385, z: -0.15671073}
+    m_Value: {x: -1.3165609, y: 6.3070087, z: -0.09271759}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1016,9 +1021,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 13.780706
+    m_Target: 14.276752
     speed: 2
-    m_Value: 13.780706
+    m_Value: 14.276752
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1112,22 +1117,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Core/Save & Load System
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Core/Save & Load System
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/aryan/Orgone
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: fa830000
-    m_LastClickedID: 33786
-    m_ExpandedIDs: 00000000626500006465000066650000686500006a6500006c6500006e650000b4650000507a000000ca9a3b
+    m_SelectedIDs: 76660000
+    m_LastClickedID: 26230
+    m_ExpandedIDs: 0000000056660000586600005a6600005c6600005e6600006066000062660000646600007c6600007e6600008a6600005a6d00005e6d0000b49a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1155,7 +1160,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000626500006465000066650000686500006a6500006c6500006e650000
+    m_ExpandedIDs: 0000000056660000586600005a6600005c6600005e660000606600006266000064660000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1182,7 +1187,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000745f0000b0610000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

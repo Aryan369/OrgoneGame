@@ -36,7 +36,6 @@ public class Boomerang : RaycastController
         _player = player.transform;
 
         sr = GetComponent<SpriteRenderer>();
-        collider = GetComponent<BoxCollider2D>();
     }
 
     void FixedUpdate()
