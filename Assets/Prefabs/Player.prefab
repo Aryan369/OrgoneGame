@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0.44554228, b: 0.44, a: 1}
   m_FlipX: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   cameraEffects: {fileID: 0}
   walkSpeed: 2.5
-  runSpeed: 10
+  runSpeed: 8
   accelerationGrounded: 0.05
   accelerationAirborne: 0.1
   clampedFallSpeed: 30
@@ -159,10 +159,10 @@ MonoBehaviour:
   jumpBufferTime: 0.2
   jumpBufferTimeCounter: 0
   isJumping: 0
-  dashDistance: 7
-  dashTime: 0.15
-  rollDistance: 10
+  rollDistance: 7
   rollTime: 0.175
+  canRoll: 0
+  isRolling: 0
   glideGravityMultiplier: 0.05
   isGliding: 0
   isBoomeranging: 0

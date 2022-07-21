@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 
     [Header("MOVEMENT")]
     public float walkSpeed = 2.5f;
-    public float runSpeed = 10f;
+    public float runSpeed = 8f;
     public float accelerationGrounded = .05f;
     public float accelerationAirborne = .1f;
     public float clampedFallSpeed = 30f;
@@ -39,10 +39,10 @@ public class Player : MonoBehaviour
     private float gravity;
 
     [Header("ROLL")]
-    public float rollDistance = 10f;
+    public float rollDistance = 7f;
     public float rollTime = .175f;
-    public bool canRoll;
-    public bool isRolling;
+    private bool canRoll;
+    private bool isRolling;
 
     [Header("GLIDE")]
     public float glideGravityMultiplier = 0.05f;
@@ -211,8 +211,7 @@ public class Player : MonoBehaviour
 
             yield return new WaitForSeconds(rollTime);
 
-            // velocity.x = controller.collisionData.faceDir;
-            velocity.x = 0f;
+            velocity.x = controller.collisionData.faceDir;
             isRolling = false;
             isCrouching = false;
         }
@@ -497,7 +496,6 @@ public class Player : MonoBehaviour
     {
         if (canRoll)
         {
-            // StartCoroutine(HandleRoll());
             isRolling = true;
         }
     }
