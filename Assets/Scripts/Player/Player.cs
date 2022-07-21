@@ -331,6 +331,10 @@ public class Player : MonoBehaviour
         if (_interactInp)
         {
             directionalInput = new Vector4(directionalInput.x, directionalInput.y, directionalInput.z, 1f);
+            if (!canPushObject)
+            {
+                _interactInp = false;
+            }
         }
         else
         {
@@ -354,11 +358,6 @@ public class Player : MonoBehaviour
         else
         {
             canMove = true;
-        }
-
-        if (!isInteracting)
-        {
-            _interactInp = false;
         }
     }
 
