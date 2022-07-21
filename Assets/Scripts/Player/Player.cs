@@ -38,12 +38,6 @@ public class Player : MonoBehaviour
     float minJumpVelocity;
     float gravity;
 
-    [Header("DASH")]
-    public float dashDistance = 7f;
-    public float dashTime = .15f;
-    bool canDash;
-    bool isDashing;
-
     [Header("ROLL")]
     public float rollDistance = 10f;
     public float rollTime = .175f;
@@ -118,7 +112,6 @@ public class Player : MonoBehaviour
         if (controller.collisionData.below)
         {
             isGrounded = true;
-            canDash = true;
             if (!isRolling) canRoll = true;
             isJumping = false;
             isGliding = false;
@@ -147,7 +140,7 @@ public class Player : MonoBehaviour
     #region Other
     void HandleClampedFallSpeed()
     {
-        if (!isWallSliding && !isGrounded && !isDashing)
+        if (!isWallSliding && !isGrounded)
         {
             if (velocity.y < -clampedFallSpeed)
             {
@@ -198,45 +191,6 @@ public class Player : MonoBehaviour
         }
 
         jumpBufferTimeCounter -= Time.deltaTime;
-    }
-
-
-    IEnumerator HandleDash()
-    {
-        if (canMove)
-        {
-            canDash = false;
-            isDashing = true;
-            Vector2 normalizedInput = directionalInput.normalized;
-            float dashVelocity = dashDistance / dashTime;
-
-            if (!isWallSliding)
-            {
-                velocity.x = (normalizedInput == Vector2.zero) ? dashVelocity * controller.collisionData.faceDir : normalizedInput.x * dashVelocity;
-            }
-            else
-            {
-                velocity.x = dashVelocity * controller.collisionData.faceDir;
-            }
-
-            if (normalizedInput.y > 0)
-            {
-                velocity.y = normalizedInput.y * dashVelocity * .8f;
-            }
-            else
-            {
-                velocity.y = normalizedInput.y * dashVelocity;
-            }
-
-            //impulseSource.GenerateImpulse(new Vector3(10, 10));
-            cameraEffects.Shake(30f, 0.1f);
-
-            yield return new WaitForSeconds(dashTime);
-
-            velocity.x = controller.collisionData.faceDir;
-            velocity.y = 0f;
-            isDashing = false;
-        }
     }
 
 
@@ -534,16 +488,6 @@ public class Player : MonoBehaviour
     public void OnWalkInputReleased()
     {
         isWalking = false;
-    }
-    #endregion
-
-    #region Dash
-    public void OnDashInput()
-    {
-        if (canDash)
-        {
-            StartCoroutine(HandleDash());
-        }
     }
     #endregion
 

@@ -72,13 +72,6 @@ public class PlayerInputManager : MonoBehaviour
         }
         #endregion
 
-        #region Dash
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            player.OnDashInput();
-        }
-        #endregion
-
         #region Roll
         if(Mathf.Abs(directionalInput.x) > 0f && directionalInput.y == -1f)
         {
