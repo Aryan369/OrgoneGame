@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
     bool isInteracting;
 
     bool canPushObject;
-     bool isPushingObject;
+    bool isPushingObject;
 
     bool _interactInp;
 
