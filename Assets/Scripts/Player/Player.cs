@@ -50,11 +50,11 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool isGliding;
 
     [Header("RINNEGAN")] 
-    public float range = 25f;
-    public bool isUsingRinnegan;
-    public bool canTeleport;
-    public bool isTeleporting;
-    private Rinnegan rinnegan;
+    public float range = 15f;
+    public float rinneTimeScale = .4f;
+    private bool isUsingRinnegan;
+    private bool canTeleport;
+    private bool isTeleporting;
     
     [Header("BOOMERANG")]
     [HideInInspector] public bool isBoomeranging;
@@ -92,8 +92,7 @@ public class Player : MonoBehaviour
     {
         controller = GetComponent<Controller2D>();
         boomerang = GameObject.FindGameObjectWithTag("Boomerang").GetComponent<Boomerang>();
-        rinnegan = GetComponentInChildren<Rinnegan>();
-        rinnegan.SetRange(range);
+        Rinnegan.Instance.SetRange(range);
 
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -402,15 +401,29 @@ public class Player : MonoBehaviour
     {
         if (isUsingRinnegan)
         {
-            GameManager.Instance._gameState = GameState.Rinnegan;
             canTeleport = true;
-            Time.timeScale = 0.4f;
+            Time.timeScale = rinneTimeScale;
         }
         else
         {
-            GameManager.Instance._gameState = GameState.Play;
-            canTeleport = false;
             Time.timeScale = 1f;
+        }
+
+        if (canTeleport)
+        {
+            if (!isUsingRinnegan)
+            {
+                if (Rinnegan.Instance._replacedObj != null)
+                {
+                    isTeleporting = true;
+                    Vector3 _to = Rinnegan.Instance._replacedObj.transform.position;
+                    Rinnegan.Instance._replacedObj.transform.position = transform.position;
+                    transform.position = _to;
+                    Rinnegan.Instance._replacedObj = null;
+                    isTeleporting = false;
+                }
+                canTeleport = false;
+            }
         }
     }
 
@@ -565,13 +578,13 @@ public class Player : MonoBehaviour
     public void OnRinneganInputPressed()
     {
         isUsingRinnegan = true;
-        rinnegan._isUsingRinnegan = isUsingRinnegan;
+        Rinnegan.Instance._isUsingRinnegan = isUsingRinnegan;
     }
 
     public void OnRinneganInputReleased()
     {
         isUsingRinnegan = false;
-        rinnegan._isUsingRinnegan = isUsingRinnegan;
+        Rinnegan.Instance._isUsingRinnegan = isUsingRinnegan;
     }
     #endregion
 

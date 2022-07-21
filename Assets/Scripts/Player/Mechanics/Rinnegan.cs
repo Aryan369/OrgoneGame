@@ -1,15 +1,28 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Rinnegan : MonoBehaviour
 {
-    public LayerMask collisionMask;
+    public static Rinnegan Instance;
     
+    public LayerMask collisionMask;
+
+    public bool aimSelect = true;
     private float _range;
     [HideInInspector] public bool _isUsingRinnegan;
+    [HideInInspector] public GameObject _replacedObj = null;
 
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    
     private void Update()
     {
         if (_isUsingRinnegan)
@@ -36,6 +49,21 @@ public class Rinnegan : MonoBehaviour
                     }
                 }
             }
+
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+            Vector2 angle = (mousePos - transform.position);
+
+            RaycastHit2D _hit = Physics2D.Raycast(transform.position, angle, _range);
+            Debug.DrawRay(transform.position, angle, Color.green);
+            
+            if (_hit)
+            {
+                if (_hit.collider.CompareTag("Amenotejikara"))
+                {
+                    _hit.collider.GetComponent<Amenotejikarable>().isHovered = true;
+                }
+            }
         }
     }
 
@@ -43,7 +71,7 @@ public class Rinnegan : MonoBehaviour
     {
         _range = range;
     }
-    
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;

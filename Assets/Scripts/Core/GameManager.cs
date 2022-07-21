@@ -75,6 +75,5 @@ public class GameManager : MonoBehaviour
 public enum GameState
 {
     Play,
-    Paused,
-    Rinnegan
+    Paused
 }
