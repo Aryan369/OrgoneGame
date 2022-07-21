@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0.44554228, b: 0.44, a: 1}
   m_FlipX: 0
@@ -167,11 +167,9 @@ MonoBehaviour:
   isGliding: 0
   isBoomeranging: 0
   wallSlideSpeedMax: 5
-  wallStickTime: 0
+  wallStickTime: 0.1
   wallJump: {x: 35, y: 20}
-  isWallSliding: 0
-  canInteract: 0
-  isInteracting: 0
+  canSlideOnObjects: 0
   velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &3030541206826440572
 MonoBehaviour:
@@ -185,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd37ecdcdac7468ab5da7d33e69f982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
 --- !u!114 &1231558362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +231,6 @@ MonoBehaviour:
     m_ActionName: General/ActionBtn[/Keyboard/v]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: General
+  m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

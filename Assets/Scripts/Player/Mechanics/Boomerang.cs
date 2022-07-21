@@ -6,7 +6,7 @@ public class Boomerang : RaycastController
     [Header("MOVEMENT")]
     public float speed = 13f;
     public float distance = 13f;
-    public float waitTime = .2f;
+    public float waitTime = .15f;
     [Range(0f, 15f)] public float easeAmount = 1.5f;
 
     [HideInInspector] public bool isBoomeranging;

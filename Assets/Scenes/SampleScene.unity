@@ -988,6 +988,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 559198379871820523, guid: 684c5d7520b3a4d5a93040972f15a335, type: 3}
+      propertyPath: waitTime
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 559198379871820524, guid: 684c5d7520b3a4d5a93040972f15a335, type: 3}
       propertyPath: m_Name
       value: Boomerang
@@ -1001,10 +1005,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1231558362, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
-      propertyPath: m_DefaultActionMap
-      value: f39c22d8-1b79-4fd0-a7d6-0e319937be2c
-      objectReference: {fileID: 0}
     - target: {fileID: 3030541206826440568, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1048,10 +1048,6 @@ PrefabInstance:
     - target: {fileID: 3030541206826440568, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3030541206826440569, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3030541206826440570, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
       propertyPath: m_Name

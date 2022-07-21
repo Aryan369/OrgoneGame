@@ -56,12 +56,12 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool isGliding;
 
     [Header("BOOMERANG")]
-    public bool isBoomeranging;
+    [HideInInspector] public bool isBoomeranging;
     Boomerang boomerang;
 
     [Header("WALL SLIDE")] 
     public float wallSlideSpeedMax = 5f;
-    public float wallStickTime = 0f;
+    public float wallStickTime = 0.1f;
     [SerializeField] Vector2 wallJump = new Vector2(35f, 20f);
 
     [SerializeField] bool canSlideOnObjects;
