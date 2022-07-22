@@ -216,7 +216,7 @@ MonoBehaviour:
   sharinganTimeScale: 0.5
   isUsingSharingan: 0
   range: 20
-  rinneTimeScale: 0.1
+  rinneTimeScale: 0.2
   isBoomeranging: 0
   wallSlideSpeedMax: 5
   wallStickTime: 0.1
