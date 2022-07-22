@@ -17,17 +17,17 @@ public class Interactable : MonoBehaviour
     {
         _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
         _sr.sprite = cue0;
-        _controller = FindObjectOfType<Player>().GetComponent<Controller2D>();
+        _controller = Player.Instance.GetComponent<Controller2D>();
     }
 
     private void Update()
     {
-        Collision();
+        CollisionCheck();
         CheckInRange();
         CheckInteraction();
     }
 
-    private void Collision()
+    private void CollisionCheck()
     {
         Vector2 origin = new Vector2(transform.position.x, transform.position.y);
         Collider2D hit = Physics2D.OverlapCircle(origin, range, collisionMask);

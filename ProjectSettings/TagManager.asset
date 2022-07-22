@@ -9,6 +9,7 @@ TagManager:
   - Boomerang
   - Aminotejikarable
   - Ground
+  - Throwable
   layers:
   - Default
   - TransparentFX

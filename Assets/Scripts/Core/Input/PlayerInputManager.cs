@@ -17,8 +17,9 @@ public class PlayerInputManager : MonoBehaviour
     private InputAction glideAction;
     private InputAction walkAction;
     private InputAction interactAction;
-    private InputAction SharinganAction;
-    private InputAction RinneganAction;
+    private InputAction sharinganAction;
+    private InputAction rinneganAction;
+    private InputAction throwAction;
 
     #endregion
 
@@ -34,7 +35,7 @@ public class PlayerInputManager : MonoBehaviour
             Instance = this;
         }
         
-        player = GetComponent<Player>();
+        player = Player.Instance;
         playerInput = GetComponent<PlayerInput>();
 
         moveAction = playerInput.actions["Move"];
@@ -42,8 +43,9 @@ public class PlayerInputManager : MonoBehaviour
         glideAction = playerInput.actions["Glide"];
         walkAction = playerInput.actions["Walk"];
         interactAction = playerInput.actions["Interact"];
-        SharinganAction = playerInput.actions["Sharingan"];
-        RinneganAction = playerInput.actions["Rinnegan"];
+        sharinganAction = playerInput.actions["Sharingan"];
+        rinneganAction = playerInput.actions["Rinnegan"];
+        throwAction = playerInput.actions["Throw"];
 
         jumpAction.started += Jump;
         jumpAction.canceled += Jump;
@@ -56,11 +58,13 @@ public class PlayerInputManager : MonoBehaviour
 
         interactAction.performed += Interact;
 
-        SharinganAction.started += Sharingan;
-        SharinganAction.canceled += Sharingan;
+        sharinganAction.started += Sharingan;
+        sharinganAction.canceled += Sharingan;
 
-        RinneganAction.started += Rinnegan;
-        RinneganAction.canceled += Rinnegan;
+        rinneganAction.started += Rinnegan;
+        rinneganAction.canceled += Rinnegan;
+
+        throwAction.performed += Throw;
     }
 
     void Update()
@@ -179,6 +183,16 @@ public class PlayerInputManager : MonoBehaviour
         if (ctx.canceled)
         {
             player.OnRinneganInputReleased();
+        }
+    }
+    #endregion
+
+    #region Throwable
+    void Throw(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            player.OnThrowableInput();
         }
     }
     #endregion

@@ -6,9 +6,17 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region Variables & Constants
+
+    #region Ref
+    public static Player Instance;
+    
     [HideInInspector] public Controller2D controller;
     [HideInInspector] public CameraEffects cameraEffects;
+    
+    #endregion
 
+    #region BASIC MOVEMENT
+    #region MOVEMENT
     [Header("MOVEMENT")]
     public float walkSpeed = 2.5f;
     public float runSpeed = 8f;
@@ -20,7 +28,10 @@ public class Player : MonoBehaviour
     private bool isCrouching;
     private bool isWalking;
     private bool isGrounded;
-
+    
+    #endregion
+    
+    #region JUMP
     [Header("JUMP")]
     public float maxJumpHeight = 4f;
     public float minJumpHeight = 1f;
@@ -37,18 +48,50 @@ public class Player : MonoBehaviour
     private float maxJumpVelocity;
     private float minJumpVelocity;
     private float gravity;
-
+    
+    #endregion
+    
+    #region ROLL
     [Header("ROLL")]
     public float rollDistance = 7f;
     public float rollTime = .175f;
     private bool canRoll;
     private bool isRolling;
 
+    #endregion
+    
+    #region GLIDE
     [Header("GLIDE")]
     public float glideGravityMultiplier = 0.05f;
     private float glideGravity;
     [HideInInspector] public bool isGliding;
+    
+    #endregion
+    
+    #region WALLSLIDE
+    [Header("WALL SLIDE")] 
+    public float wallSlideSpeedMax = 5f;
+    public float wallStickTime = 0.1f;
+    [SerializeField] private Vector2 wallJump = new Vector2(35f, 20f);
 
+    [SerializeField] private bool canSlideOnObjects;
+    private bool isWallSliding;
+
+    private float timeToWallUnstick;
+    private int wallDirX;
+
+    #endregion
+
+    #endregion
+    
+    #region BOOMERANG
+    [Header("BOOMERANG")]
+    [HideInInspector] public bool isBoomeranging;
+    private Boomerang boomerang;
+
+    #endregion
+    
+    #region CHAKRA
     [Header("SHARINGAN")] 
     public float sharinganTimeScale = .5f;
     private bool isUsingSharingan;
@@ -62,22 +105,17 @@ public class Player : MonoBehaviour
     public float rinneBufferTime = .15f;
     private float rinneBufferTimeCounter;
     
-    [Header("BOOMERANG")]
-    [HideInInspector] public bool isBoomeranging;
-    private Boomerang boomerang;
+    #endregion
 
-    [Header("WALL SLIDE")] 
-    public float wallSlideSpeedMax = 5f;
-    public float wallStickTime = 0.1f;
-    [SerializeField] private Vector2 wallJump = new Vector2(35f, 20f);
+    #region THROWABLE
 
-    [SerializeField] private bool canSlideOnObjects;
-    private bool isWallSliding;
+    [Header("THROWABLE")] 
+    public GameObject _throwable = null;
+    
+    #endregion
 
-    private float timeToWallUnstick;
-    private int wallDirX;
-
-    [Header("INTERACTING")]
+    #region INTERACTION
+    [Header("INTERACTION")]
     private bool canInteract;
     private bool isInteracting;
 
@@ -86,13 +124,29 @@ public class Player : MonoBehaviour
 
     private bool _interactInp;
 
-    //Other
+    #endregion
+
+    #region Other
     [HideInInspector] public Vector3 velocity;
     private float velocityXSmoothing;
 
     private Vector4 directionalInput; // z = isCrouching, w = isInteracting
+    
     #endregion
-
+    
+    #endregion
+    
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     void Start()
     {
@@ -668,6 +722,14 @@ public class Player : MonoBehaviour
     {
         isUsingRinnegan = false;
     }
+    #endregion
+
+    #region Throwable
+    public void OnThrowableInput()
+    {
+        
+    }
+
     #endregion
 
     #endregion

@@ -2,5 +2,6 @@ public enum ThrowableStates
 {
     Idle,
     Picked,
-    Thrown
+    Thrown,
+    Discard
 }

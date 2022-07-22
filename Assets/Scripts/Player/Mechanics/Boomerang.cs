@@ -33,7 +33,7 @@ public class Boomerang : RaycastController
     protected override void Start()
     {
         base.Start();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); ;
+        player = Player.Instance;
         _player = player.transform;
 
         sr = GetComponent<SpriteRenderer>();
