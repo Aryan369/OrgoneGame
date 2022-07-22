@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Amenotejikarable : MonoBehaviour
+public class Aminotejikarable : MonoBehaviour
 {
     [HideInInspector] public bool isActive;
     [HideInInspector] public bool isHovered;
@@ -19,7 +19,7 @@ public class Amenotejikarable : MonoBehaviour
 
     private void Update()
     {
-        if (Rinnegan.Instance._isUsingRinnegan)
+        if (GameManager.Instance._gameState == GameState.Rinnegan)
         {
             if (isSelected && Rinnegan.Instance._replacedObj != this.gameObject)
             {
@@ -62,7 +62,7 @@ public class Amenotejikarable : MonoBehaviour
         else
         {
             isSelectedOld = isSelected;
-            if (isHovered)
+            if (isHovered && isActive)
             {
                 isSelected = true;
             }

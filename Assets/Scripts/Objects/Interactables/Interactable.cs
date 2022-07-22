@@ -76,7 +76,6 @@ public class Interactable : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawRay(transform.position, Vector3.right * range);
-        Gizmos.DrawRay(transform.position, Vector3.left * range);
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

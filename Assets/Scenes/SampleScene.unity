@@ -245,6 +245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aminotejikara 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1272007381982209529, guid: 9ccaa717c96314803bea4357f5c99f74, type: 3}
+      propertyPath: m_TagString
+      value: Aminotejikarable
+      objectReference: {fileID: 0}
     - target: {fileID: 1272007381982209531, guid: 9ccaa717c96314803bea4357f5c99f74, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -556,11 +560,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1272007381982209531, guid: 9ccaa717c96314803bea4357f5c99f74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.8
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1272007381982209531, guid: 9ccaa717c96314803bea4357f5c99f74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.62
+      value: 8.4
       objectReference: {fileID: 0}
     - target: {fileID: 1272007381982209531, guid: 9ccaa717c96314803bea4357f5c99f74, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1080,6 +1084,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aminotejikara 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1272007381982209529, guid: 9ccaa717c96314803bea4357f5c99f74, type: 3}
+      propertyPath: m_TagString
+      value: Aminotejikarable
+      objectReference: {fileID: 0}
     - target: {fileID: 1272007381982209531, guid: 9ccaa717c96314803bea4357f5c99f74, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1194,13 +1202,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aminotejikara
       objectReference: {fileID: 0}
+    - target: {fileID: 1272007381982209529, guid: 9ccaa717c96314803bea4357f5c99f74, type: 3}
+      propertyPath: m_TagString
+      value: Aminotejikarable
+      objectReference: {fileID: 0}
     - target: {fileID: 1272007381982209531, guid: 9ccaa717c96314803bea4357f5c99f74, type: 3}
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1272007381982209531, guid: 9ccaa717c96314803bea4357f5c99f74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.8
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1272007381982209531, guid: 9ccaa717c96314803bea4357f5c99f74, type: 3}
       propertyPath: m_LocalPosition.y

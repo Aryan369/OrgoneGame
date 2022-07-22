@@ -93,6 +93,7 @@ public class Player : MonoBehaviour
         controller = GetComponent<Controller2D>();
         boomerang = GameObject.FindGameObjectWithTag("Boomerang").GetComponent<Boomerang>();
         Rinnegan.Instance.SetRange(range);
+        Rinnegan.Instance.SetController(controller);
 
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -578,13 +579,13 @@ public class Player : MonoBehaviour
     public void OnRinneganInputPressed()
     {
         isUsingRinnegan = true;
-        Rinnegan.Instance._isUsingRinnegan = isUsingRinnegan;
+        GameManager.Instance._gameState = GameState.Rinnegan;
     }
 
     public void OnRinneganInputReleased()
     {
         isUsingRinnegan = false;
-        Rinnegan.Instance._isUsingRinnegan = isUsingRinnegan;
+        GameManager.Instance._gameState = GameState.Play;
     }
     #endregion
 

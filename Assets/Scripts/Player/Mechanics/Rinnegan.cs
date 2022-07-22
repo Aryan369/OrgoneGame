@@ -5,10 +5,10 @@ public class Rinnegan : MonoBehaviour
     public static Rinnegan Instance;
     
     public LayerMask collisionMask;
+    private Controller2D _controller;
 
     public bool aimSelect = true;
     private float _range;
-    [HideInInspector] public bool _isUsingRinnegan;
     [HideInInspector] public GameObject _replacedObj = null;
 
     private void Awake()
@@ -25,7 +25,7 @@ public class Rinnegan : MonoBehaviour
     
     private void Update()
     {
-        if (_isUsingRinnegan)
+        if (GameManager.Instance._gameState == GameState.Rinnegan)
         {
             Vector2 _origin = new Vector2(transform.position.x, transform.position.y);
             var hitColliders = Physics2D.OverlapCircleAll(_origin, _range, collisionMask);
@@ -41,11 +41,18 @@ public class Rinnegan : MonoBehaviour
                 {
                     if (hit.collider == hitColliders[i])
                     {
-                        hitColliders[i].GetComponent<Amenotejikarable>().isActive = true;
+                        if (Mathf.Sign(hitColliders[i].transform.position.x - transform.position.x) == _controller.collisionData.faceDir)
+                        {
+                            hitColliders[i].GetComponent<Aminotejikarable>().isActive = true;
+                        }
+                        else
+                        {
+                            hitColliders[i].GetComponent<Aminotejikarable>().isActive = false;
+                        }
                     }
                     else
                     {
-                        hitColliders[i].GetComponent<Amenotejikarable>().isActive = false;
+                        hitColliders[i].GetComponent<Aminotejikarable>().isActive = false;
                     }
                 }
             }
@@ -59,9 +66,12 @@ public class Rinnegan : MonoBehaviour
             
             if (_hit)
             {
-                if (_hit.collider.CompareTag("Amenotejikara"))
+                if (_hit.collider.CompareTag("Aminotejikarable"))
                 {
-                    _hit.collider.GetComponent<Amenotejikarable>().isHovered = true;
+                    if (_hit.collider.GetComponent<Aminotejikarable>().isActive == true)
+                    {
+                        _hit.collider.GetComponent<Aminotejikarable>().isHovered = true;
+                    }
                 }
             }
         }
@@ -72,10 +82,14 @@ public class Rinnegan : MonoBehaviour
         _range = range;
     }
 
+    public void SetController(Controller2D controller)
+    {
+        _controller = controller;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawRay(transform.position, Vector3.right * _range);
-        Gizmos.DrawRay(transform.position, Vector3.left * _range);
+        Gizmos.DrawWireSphere(transform.position, _range);
     }
 }
