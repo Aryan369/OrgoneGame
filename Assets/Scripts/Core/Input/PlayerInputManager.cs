@@ -17,6 +17,7 @@ public class PlayerInputManager : MonoBehaviour
     private InputAction glideAction;
     private InputAction walkAction;
     private InputAction interactAction;
+    private InputAction SharinganAction;
     private InputAction RinneganAction;
 
     #endregion
@@ -41,6 +42,7 @@ public class PlayerInputManager : MonoBehaviour
         glideAction = playerInput.actions["Glide"];
         walkAction = playerInput.actions["Walk"];
         interactAction = playerInput.actions["Interact"];
+        SharinganAction = playerInput.actions["Sharingan"];
         RinneganAction = playerInput.actions["Rinnegan"];
 
         jumpAction.started += Jump;
@@ -53,6 +55,9 @@ public class PlayerInputManager : MonoBehaviour
         walkAction.canceled += Walk;
 
         interactAction.performed += Interact;
+
+        SharinganAction.started += Sharingan;
+        SharinganAction.canceled += Sharingan;
 
         RinneganAction.started += Rinnegan;
         RinneganAction.canceled += Rinnegan;
@@ -148,6 +153,21 @@ public class PlayerInputManager : MonoBehaviour
     }
     #endregion
 
+    #region Sharingan
+    void Sharingan(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            player.OnSharinganInputPressed();
+        }
+    
+        if (ctx.canceled)
+        {
+            player.OnSharinganInputReleased();
+        }
+    }
+    #endregion
+    
     #region Rinnegan
     void Rinnegan(InputAction.CallbackContext ctx)
     {

@@ -68,7 +68,7 @@ public class Rinnegan : MonoBehaviour
             {
                 if (_hit.collider.CompareTag("Aminotejikarable"))
                 {
-                    if (_hit.collider.GetComponent<Aminotejikarable>().isActive == true)
+                    if (_hit.collider.GetComponent<Aminotejikarable>().isActive)
                     {
                         _hit.collider.GetComponent<Aminotejikarable>().isHovered = true;
                     }

@@ -1307,10 +1307,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3030541206826440575, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
-      propertyPath: rinneTimeScale
-      value: 0.4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
 --- !u!1001 &6068140873257582294

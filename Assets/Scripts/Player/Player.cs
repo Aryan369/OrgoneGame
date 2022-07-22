@@ -49,9 +49,13 @@ public class Player : MonoBehaviour
     private float glideGravity;
     [HideInInspector] public bool isGliding;
 
+    [Header("SHARINGAN")] 
+    public float sharinganTimeScale = .5f;
+    public bool isUsingSharingan;
+    
     [Header("RINNEGAN")] 
-    public float range = 15f;
-    public float rinneTimeScale = .4f;
+    public float range = 20f;
+    public float rinneTimeScale = .2f;
     private bool isUsingRinnegan;
     private bool canTeleport;
     private bool isTeleporting;
@@ -112,6 +116,7 @@ public class Player : MonoBehaviour
             HandleGlide();
             HandleCrouch();
             StartCoroutine(HandleRoll());
+            HandleSharingan();
             HandleRinnegan();
             HandlePushObject();
             HandleWallSliding();
@@ -398,6 +403,19 @@ public class Player : MonoBehaviour
     }
 
 
+    void HandleSharingan()
+    {
+        if (isUsingSharingan && !isUsingRinnegan)
+        {
+            Time.timeScale = sharinganTimeScale;
+        }
+        else if (!isUsingRinnegan)
+        {
+            Time.timeScale = 1f;
+        }
+    }
+    
+    
     void HandleRinnegan()
     {
         if (isUsingRinnegan)
@@ -405,7 +423,7 @@ public class Player : MonoBehaviour
             canTeleport = true;
             Time.timeScale = rinneTimeScale;
         }
-        else
+        else if(!isUsingSharingan)
         {
             Time.timeScale = 1f;
         }
@@ -574,18 +592,41 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    #region Aminotejikara
+    #region Sharingan
+    public void OnSharinganInputPressed()
+    {
+        isUsingSharingan = true;
+        GameManager.Instance._gameState = GameState.Sharingan;
+    }
 
+    public void OnSharinganInputReleased()
+    {
+        isUsingSharingan = false;
+        GameManager.Instance._gameState = GameState.Play;
+    }
+    #endregion
+    
+    #region Aminotejikara
     public void OnRinneganInputPressed()
     {
-        isUsingRinnegan = true;
-        GameManager.Instance._gameState = GameState.Rinnegan;
+        if (isUsingSharingan)
+        {
+            isUsingRinnegan = true;
+            GameManager.Instance._gameState = GameState.Rinnegan;
+        }
     }
 
     public void OnRinneganInputReleased()
     {
         isUsingRinnegan = false;
-        GameManager.Instance._gameState = GameState.Play;
+        if (isUsingSharingan)
+        {
+            GameManager.Instance._gameState = GameState.Sharingan;
+        }
+        else
+        {
+            GameManager.Instance._gameState = GameState.Play;
+        }
     }
     #endregion
 

@@ -30,8 +30,8 @@ public class Interactable : MonoBehaviour
     private void Collision()
     {
         Vector2 origin = new Vector2(transform.position.x, transform.position.y);
-        RaycastHit2D hit =  Physics2D.CircleCast(origin, range, Vector2.right, 0f, collisionMask);
-
+        Collider2D hit = Physics2D.OverlapCircle(origin, range, collisionMask);
+        
         if (!hit)
         {
             _inRange = false;

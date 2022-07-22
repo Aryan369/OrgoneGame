@@ -76,5 +76,6 @@ public enum GameState
 {
     Play,
     Paused,
+    Sharingan,
     Rinnegan
 }

@@ -47,7 +47,8 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
-  _isUsingRinnegan: 0
+  aimSelect: 1
+  _replacedObj: {fileID: 0}
 --- !u!1 &3030541206826440570
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,10 +213,10 @@ MonoBehaviour:
   rollTime: 0.175
   glideGravityMultiplier: 0.05
   isGliding: 0
-  range: 15
-  isUsingRinnegan: 0
-  canTeleport: 0
-  isTeleporting: 0
+  sharinganTimeScale: 0.5
+  isUsingSharingan: 0
+  range: 20
+  rinneTimeScale: 0.1
   isBoomeranging: 0
   wallSlideSpeedMax: 5
   wallStickTime: 0.1
@@ -284,6 +285,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 29c5511a-a964-4883-bc25-87de3ef510dc
     m_ActionName: Gameplay/Rinnegan[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 30c55fea-8971-4614-aaf4-39e58fdb78f6
+    m_ActionName: Gameplay/Sharingan[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

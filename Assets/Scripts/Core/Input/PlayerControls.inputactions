@@ -51,6 +51,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Sharingan",
+                    "type": "Button",
+                    "id": "30c55fea-8971-4614-aaf4-39e58fdb78f6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Rinnegan",
                     "type": "Button",
                     "id": "29c5511a-a964-4883-bc25-87de3ef510dc",
@@ -273,11 +282,22 @@
                 {
                     "name": "",
                     "id": "ac885231-9959-4593-bda5-48d8340ba283",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
                     "action": "Rinnegan",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "273c9f34-126d-4953-945b-390e4481fe84",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sharingan",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
