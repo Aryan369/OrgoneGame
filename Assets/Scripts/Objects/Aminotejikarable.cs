@@ -20,7 +20,7 @@ public class Aminotejikarable : MonoBehaviour
     {
         if (GameManager.Instance._gameState == GameState.Rinnegan)
         {
-            if (isSelected && Rinnegan.Instance._replacedObj != this.gameObject)
+            if (isSelected && Chakra.Instance._replacedObj != this.gameObject)
             {
                 isSelected = false;
             }
@@ -48,7 +48,7 @@ public class Aminotejikarable : MonoBehaviour
             _sr.color = _color;
         }
 
-        if (!Rinnegan.Instance.aimSelect)
+        if (!Chakra.Instance.aimSelect)
         {
             if (PlayerInputManager.Instance.attackAction.triggered)
             {
@@ -74,11 +74,11 @@ public class Aminotejikarable : MonoBehaviour
             {
                 if (isSelected)
                 {
-                    Rinnegan.Instance._replacedObj = gameObject;
+                    Chakra.Instance._replacedObj = gameObject;
                 }
                 else
                 {
-                    Rinnegan.Instance._replacedObj = null;
+                    Chakra.Instance._replacedObj = null;
                 }
             }
         }
@@ -93,12 +93,12 @@ public class Aminotejikarable : MonoBehaviour
             if (!isSelected)
             {
                 isSelected = true;
-                Rinnegan.Instance._replacedObj = gameObject;
+                Chakra.Instance._replacedObj = gameObject;
             }
             else
             {
                 isSelected = false;
-                Rinnegan.Instance._replacedObj = null;
+                Chakra.Instance._replacedObj = null;
             }
         }
     }

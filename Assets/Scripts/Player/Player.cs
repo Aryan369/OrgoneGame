@@ -90,27 +90,6 @@ public class Player : MonoBehaviour
     private Boomerang boomerang;
 
     #endregion
-    
-    #region CHAKRA
-
-    [Header("CHAKRA")] 
-    public float maxChakra = 2.5f;
-    private float chakra;
-    
-    [Header("SHARINGAN")] 
-    public float sharinganTimeScale = .5f;
-    private bool isUsingSharingan;
-    
-    [Header("RINNEGAN")] 
-    public float range = 20f;
-    public float rinneTimeScale = .2f;
-    private bool isUsingRinnegan;
-    private bool canTeleport;
-    private bool isTeleporting;
-    public float rinneBufferTime = .15f;
-    private float rinneBufferTimeCounter;
-    
-    #endregion
 
     #region THROWABLE
 
@@ -159,9 +138,6 @@ public class Player : MonoBehaviour
     {
         controller = GetComponent<Controller2D>();
         boomerang = GameObject.FindGameObjectWithTag("Boomerang").GetComponent<Boomerang>();
-        Rinnegan.Instance.SetRange(range);
-        Rinnegan.Instance.SetController(controller);
-        chakra = maxChakra;
 
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -180,9 +156,6 @@ public class Player : MonoBehaviour
             HandleGlide();
             HandleCrouch();
             StartCoroutine(HandleRoll());
-            HandleChakra();
-            HandleSharingan();
-            HandleRinnegan();
             HandlePushObject();
             HandleWallSliding();
             HandleClampedFallSpeed();
@@ -473,129 +446,6 @@ public class Player : MonoBehaviour
     }
 
 
-    void HandleChakra()
-    {
-        if (chakra > 0f)
-        {
-            if (isUsingRinnegan)
-            {
-                chakra -= Time.deltaTime * 2f;
-            }
-            else if (isUsingSharingan)
-            {
-                chakra -= Time.deltaTime;
-            }
-        }
-        else
-        {
-            canTeleport = false;
-            isUsingRinnegan = false;
-            isUsingSharingan = false;
-        }
-
-        if (chakra < maxChakra && !isUsingRinnegan && !isUsingSharingan)
-        {
-            chakra += Time.deltaTime;
-        }
-    }
-
-    
-    void HandleSharingan()
-    {
-        if (!isUsingRinnegan)
-        {
-            if (isUsingSharingan)
-            {
-                GameManager.Instance._gameState = GameState.Sharingan;
-            }
-            else
-            {
-                GameManager.Instance._gameState = GameState.Play;
-            }
-        }
-        
-        if (isUsingSharingan && !isUsingRinnegan)
-        {
-            Time.timeScale = sharinganTimeScale;
-        }
-        else if (!canTeleport && rinneBufferTimeCounter <= 0f)
-        {
-            Time.timeScale = 1f;
-        }
-    }
-    
-    
-    void HandleRinnegan()
-    {
-        if (isUsingRinnegan)
-        {
-            GameManager.Instance._gameState = GameState.Rinnegan;
-        }
-        else
-        {
-            if (isUsingSharingan)
-            {
-                GameManager.Instance._gameState = GameState.Sharingan;
-            }
-            else
-            {
-                GameManager.Instance._gameState = GameState.Play;
-            }
-        }
-        
-        if (isUsingRinnegan)
-        {
-            canTeleport = true;
-            Time.timeScale = rinneTimeScale;
-        }
-        else 
-        {
-            if (!Rinnegan.Instance.aimSelect)
-            {
-                canTeleport = false;
-            }
-        }
-
-        if (canTeleport)
-        {
-            if (!Rinnegan.Instance.aimSelect)
-            {
-                if (Rinnegan.Instance._replacedObj != null)
-                {
-                    isTeleporting = true;
-                    Vector3 _to = Rinnegan.Instance._replacedObj.transform.position;
-                    Rinnegan.Instance._replacedObj.transform.position = transform.position;
-                    transform.position = _to;
-                    Rinnegan.Instance._replacedObj = null;
-                    isTeleporting = false;
-                    isUsingRinnegan = false;
-                    rinneBufferTimeCounter = rinneBufferTime;
-                }
-            }
-            else
-            {
-                if (!isUsingRinnegan)
-                {
-                    if (Rinnegan.Instance._replacedObj != null)
-                    {
-                        isTeleporting = true;
-                        Vector3 _to = Rinnegan.Instance._replacedObj.transform.position;
-                        Rinnegan.Instance._replacedObj.transform.position = transform.position;
-                        transform.position = _to;
-                        Rinnegan.Instance._replacedObj = null;
-                        isTeleporting = false;
-                        rinneBufferTimeCounter = rinneBufferTime;
-                    }
-                    
-                    canTeleport = false;
-                }
-            }
-        }
-
-        rinneBufferTimeCounter -= Time.deltaTime;
-    }
-
-
     void HandleThrowable()
     {
         if (canPickThrowable)
@@ -773,24 +623,26 @@ public class Player : MonoBehaviour
     #region Sharingan
     public void OnSharinganInputPressed()
     {
-        isUsingSharingan = true;
+        // isUsingSharingan = true;
+        Chakra.Instance.isUsingSharingan = true;
     }
 
     public void OnSharinganInputReleased()
     {
-        isUsingSharingan = false;
+        // isUsingSharingan = false;
+        Chakra.Instance.isUsingSharingan = false;
     }
     #endregion
     
     #region Aminotejikara
     public void OnRinneganInputPressed()
     {
-        isUsingRinnegan = true;
+        Chakra.Instance.isUsingRinnegan = true;
     }
 
     public void OnRinneganInputReleased()
     {
-        isUsingRinnegan = false;
+        Chakra.Instance.isUsingRinnegan = false;
     }
     #endregion
 
