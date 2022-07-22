@@ -8,6 +8,7 @@ TagManager:
   - Pushable
   - Boomerang
   - Aminotejikarable
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -250,7 +250,7 @@ public class Player : MonoBehaviour
                     isWallSliding = false;
                 }
             }
-            else
+            else if (controller.collisionData.wallAhead)
             {
                 isWallSliding = true;
             }

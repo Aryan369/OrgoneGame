@@ -112,6 +112,11 @@ public class Controller2D : RaycastController
                     continue;
                 }
 
+                if (hit.collider.CompareTag("Ground"))
+                {
+                    collisionData.wallAhead = true;
+                }
+
                 float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 
                 if (i == 0 && slopeAngle <= maxSlopeAngle)
@@ -164,7 +169,7 @@ public class Controller2D : RaycastController
 
             if (hit)
             {
-                if (hit.collider.tag == "Platform Effector")
+                if (hit.collider.CompareTag("Platform Effector"))
                 {
                     if (directionY == 1 || hit.distance == 0)
                     {
@@ -505,6 +510,8 @@ public class Controller2D : RaycastController
         public bool isDescendingSlope;
         public bool isSlidingDownSlope;
 
+        public bool wallAhead;
+
         public bool canInteract;
         public bool isInteracting;
         public bool inRange;
@@ -528,6 +535,8 @@ public class Controller2D : RaycastController
             isClimbingSlope = false;
             isDescendingSlope = false;
             isSlidingDownSlope = false;
+
+            wallAhead = false;
 
             slopeNormal = Vector2.zero;
             previousSlopeAngle = slopeAngle;
