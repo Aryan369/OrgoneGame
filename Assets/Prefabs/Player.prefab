@@ -48,6 +48,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   aimSelect: 1
+  _360Vision: 1
   _replacedObj: {fileID: 0}
 --- !u!1 &3030541206826440570
 GameObject:
@@ -216,7 +217,7 @@ MonoBehaviour:
   sharinganTimeScale: 0.5
   range: 20
   rinneTimeScale: 0.2
-  rinneBufferTime: 0.1
+  rinneBufferTime: 0.15
   isBoomeranging: 0
   wallSlideSpeedMax: 5
   wallStickTime: 0.1

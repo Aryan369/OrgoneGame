@@ -8,6 +8,7 @@ public class Rinnegan : MonoBehaviour
     private Controller2D _controller;
 
     public bool aimSelect = true;
+    public bool _360Vision;
     private float _range;
     [HideInInspector] public GameObject _replacedObj = null;
 
@@ -41,13 +42,20 @@ public class Rinnegan : MonoBehaviour
                 {
                     if (hit.collider == hitColliders[i])
                     {
-                        if (Mathf.Sign(hitColliders[i].transform.position.x - transform.position.x) == _controller.collisionData.faceDir)
+                        if (_360Vision)
                         {
                             hitColliders[i].GetComponent<Aminotejikarable>().isActive = true;
                         }
                         else
                         {
-                            hitColliders[i].GetComponent<Aminotejikarable>().isActive = false;
+                            if (Mathf.Sign(hitColliders[i].transform.position.x - transform.position.x) == _controller.collisionData.faceDir)
+                            {
+                                hitColliders[i].GetComponent<Aminotejikarable>().isActive = true;
+                            }
+                            else
+                            {
+                                hitColliders[i].GetComponent<Aminotejikarable>().isActive = false;
+                            }
                         }
                     }
                     else

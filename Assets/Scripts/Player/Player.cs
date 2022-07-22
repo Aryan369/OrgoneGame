@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
     private bool isUsingRinnegan;
     private bool canTeleport;
     private bool isTeleporting;
-    public float rinneBufferTime = .1f;
+    public float rinneBufferTime = .15f;
     private float rinneBufferTimeCounter;
     
     [Header("BOOMERANG")]
@@ -423,7 +423,7 @@ public class Player : MonoBehaviour
         {
             Time.timeScale = sharinganTimeScale;
         }
-        else if (!isUsingRinnegan && rinneBufferTimeCounter <= 0f)
+        else if (!canTeleport && rinneBufferTimeCounter <= 0f)
         {
             Time.timeScale = 1f;
         }
@@ -489,7 +489,6 @@ public class Player : MonoBehaviour
                         transform.position = _to;
                         Rinnegan.Instance._replacedObj = null;
                         isTeleporting = false;
-                        isUsingRinnegan = false;
                         rinneBufferTimeCounter = rinneBufferTime;
                     }
                     
