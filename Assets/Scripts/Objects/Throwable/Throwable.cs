@@ -4,33 +4,44 @@ public class Throwable : MonoBehaviour
 {
     public ThrowableStates state = ThrowableStates.Idle;
 
+    public LayerMask playerMask;
     public LayerMask collisionMask;
-    public float range = 1.25f;
+    
     public float velocity = 4f;
 
-    public bool canBePicked;
+    public float playerMaskRangeFactor = 1.5f;
+    private float playerMaskRange;
+    
+    private float collisionMaskRange;
 
+    private bool canBePicked;
+    
     private SpriteRenderer _sr;
     private Rigidbody2D _rb;
+    private BoxCollider2D _collider;
     private Player _player;
     
     void Start()
     {
         _sr = GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<BoxCollider2D>();
         _player = Player.Instance;
+        playerMaskRange = transform.localScale.x * playerMaskRangeFactor;
+        collisionMaskRange = transform.localScale.x * 0.5f;
     }
     
     void Update()
     {
-        CollisionCheck();
+        ThrownCollisionCheck();
+        PlayerCollisionCheck();
         StateCheck();
     }
 
     public void Throw()
     {
         state = ThrowableStates.Thrown;
-        transform.position = _player.transform.position;
+        transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y + 0.25f);
         
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 angle = (mousePos - transform.position);
@@ -38,12 +49,11 @@ public class Throwable : MonoBehaviour
         _rb.velocity = angle * velocity;
     }
     
-    private void CollisionCheck()
+    private void PlayerCollisionCheck()
     {
         Vector2 origin = new Vector2(transform.position.x, transform.position.y);
-        RaycastHit2D hit = Physics2D.CircleCast(origin, range, Vector2.zero, 0f, collisionMask);
-        
-        if (!hit)
+        Collider2D playerHit = Physics2D.OverlapCircle(origin, playerMaskRange, playerMask);
+        if (!playerHit)
         {
             if (state == ThrowableStates.Idle)
             {
@@ -52,16 +62,24 @@ public class Throwable : MonoBehaviour
             }
             return;
         }
-        if (hit)
+        if (playerHit)
         {
-            if (state == ThrowableStates.Idle && hit.collider.CompareTag("Player"))
+            if (state == ThrowableStates.Idle && playerHit.CompareTag("Player"))
             {
                 canBePicked = true;
                 _player.canPickThrowable = canBePicked;
                 _player._pickable = this.gameObject;
             }
+        }
+    }
 
-            if (state == ThrowableStates.Thrown && !hit.collider.CompareTag("Player") && hit.distance <= 0.6f)
+    private void ThrownCollisionCheck()
+    {
+        Vector2 origin = new Vector2(transform.position.x, transform.position.y);
+        Collider2D thrownHit = Physics2D.OverlapCircle(origin, collisionMaskRange, collisionMask);
+        if (thrownHit)
+        {
+            if (state == ThrowableStates.Thrown)
             {
                 state = ThrowableStates.Discard;
             }
@@ -73,17 +91,19 @@ public class Throwable : MonoBehaviour
         if (state == ThrowableStates.Picked)
         {
             _sr.enabled = false;
+            _collider.enabled = false;
         }
         else if(state != ThrowableStates.Discard)
         {
             _sr.enabled = true;
+            _collider.enabled = true;
         }
 
         if (state == ThrowableStates.Discard)
         {
             Destroy(gameObject);
         }
-
+        
         if (state == ThrowableStates.Thrown)
         {
             Destroy(gameObject, 10f);
@@ -93,6 +113,8 @@ public class Throwable : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, playerMaskRange);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, collisionMaskRange);
     }
 }
