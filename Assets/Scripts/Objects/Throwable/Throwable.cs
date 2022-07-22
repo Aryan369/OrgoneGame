@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Throwable : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class Throwable : MonoBehaviour
         state = ThrowableStates.Thrown;
         transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y + 0.25f);
         
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(PlayerInputManager.Instance.mousePosAction.ReadValue<Vector2>());
         Vector2 angle = (mousePos - transform.position);
 
         _rb.velocity = angle * velocity;

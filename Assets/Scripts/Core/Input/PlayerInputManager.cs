@@ -21,6 +21,9 @@ public class PlayerInputManager : MonoBehaviour
     private InputAction rinneganAction;
     private InputAction throwAction;
     private InputAction boomerangAction;
+    [HideInInspector] public InputAction attackAction;
+
+    [HideInInspector] public InputAction mousePosAction;
 
     #endregion
 
@@ -48,6 +51,9 @@ public class PlayerInputManager : MonoBehaviour
         rinneganAction = playerInput.actions["Rinnegan"];
         throwAction = playerInput.actions["Throw"];
         boomerangAction = playerInput.actions["Boomerang"];
+        attackAction = playerInput.actions["Attack"];
+
+        mousePosAction = playerInput.actions["MousePos"];
 
         jumpAction.started += Jump;
         jumpAction.canceled += Jump;
@@ -75,7 +81,7 @@ public class PlayerInputManager : MonoBehaviour
     {
         Vector2 directionalInput = moveAction.ReadValue<Vector2>();
         player.SetDirectionalInput(directionalInput);
-        
+
         #region Crouch & Roll
         if (directionalInput.x == 0f)
         {

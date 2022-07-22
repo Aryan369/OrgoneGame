@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Aminotejikarable : MonoBehaviour
 {
@@ -51,7 +50,7 @@ public class Aminotejikarable : MonoBehaviour
 
         if (!Rinnegan.Instance.aimSelect)
         {
-            if (Mouse.current.leftButton.wasPressedThisFrame)
+            if (PlayerInputManager.Instance.attackAction.triggered)
             {
                 if (isHovered)
                 {
