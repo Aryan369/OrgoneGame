@@ -111,6 +111,8 @@ public class Player : MonoBehaviour
 
     [Header("THROWABLE")] 
     public GameObject _throwable = null;
+    public GameObject _pickable = null;
+    public bool canPickThrowable;
     
     #endregion
 
@@ -205,6 +207,11 @@ public class Player : MonoBehaviour
             {
                 velocity.y = 0f;
             }
+        }
+
+        if (!canPickThrowable)
+        {
+            _pickable = null;
         }
     }
 
@@ -554,6 +561,35 @@ public class Player : MonoBehaviour
         rinneBufferTimeCounter -= Time.deltaTime;
     }
 
+
+    void HandleThrowable()
+    {
+        if (canPickThrowable)
+        {
+            if (_throwable != null)
+            {
+                _throwable.GetComponent<Throwable>().state = ThrowableStates.Discard;
+                _throwable = _pickable;
+                _throwable.GetComponent<Throwable>().state = ThrowableStates.Picked;
+            }
+            else
+            {
+                _throwable = _pickable;
+                _throwable.GetComponent<Throwable>().state = ThrowableStates.Picked;
+            }
+            
+            canPickThrowable = false;
+        }
+        else
+        {
+            if (_throwable != null)
+            {
+                _throwable.GetComponent<Throwable>().Throw();
+                _throwable = null;
+            }
+        }
+    }
+
     void CalculateVelocity()
     {
         if (canMove)
@@ -727,7 +763,7 @@ public class Player : MonoBehaviour
     #region Throwable
     public void OnThrowableInput()
     {
-        
+        HandleThrowable();
     }
 
     #endregion

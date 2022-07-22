@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   aimSelect: 1
   _360Vision: 1
   _replacedObj: {fileID: 0}
@@ -214,15 +214,18 @@ MonoBehaviour:
   rollTime: 0.175
   glideGravityMultiplier: 0.05
   isGliding: 0
-  sharinganTimeScale: 0.5
-  range: 20
-  rinneTimeScale: 0.2
-  rinneBufferTime: 0.15
-  isBoomeranging: 0
   wallSlideSpeedMax: 5
   wallStickTime: 0.1
   wallJump: {x: 35, y: 20}
   canSlideOnObjects: 0
+  isBoomeranging: 0
+  sharinganTimeScale: 0.5
+  range: 20
+  rinneTimeScale: 0.2
+  rinneBufferTime: 0.15
+  _throwable: {fileID: 0}
+  _pickable: {fileID: 0}
+  canPickThrowable: 0
   velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &3030541206826440572
 MonoBehaviour:
@@ -290,6 +293,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 30c55fea-8971-4614-aaf4-39e58fdb78f6
     m_ActionName: Gameplay/Sharingan[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c22e39a1-37c7-45d5-bc8c-67cdf4abbc8a
+    m_ActionName: Gameplay/Throw[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

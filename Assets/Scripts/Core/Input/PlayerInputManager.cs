@@ -20,6 +20,7 @@ public class PlayerInputManager : MonoBehaviour
     private InputAction sharinganAction;
     private InputAction rinneganAction;
     private InputAction throwAction;
+    private InputAction boomerangAction;
 
     #endregion
 
@@ -35,7 +36,7 @@ public class PlayerInputManager : MonoBehaviour
             Instance = this;
         }
         
-        player = Player.Instance;
+        player = GetComponent<Player>();
         playerInput = GetComponent<PlayerInput>();
 
         moveAction = playerInput.actions["Move"];
@@ -46,6 +47,7 @@ public class PlayerInputManager : MonoBehaviour
         sharinganAction = playerInput.actions["Sharingan"];
         rinneganAction = playerInput.actions["Rinnegan"];
         throwAction = playerInput.actions["Throw"];
+        boomerangAction = playerInput.actions["Boomerang"];
 
         jumpAction.started += Jump;
         jumpAction.canceled += Jump;
@@ -65,6 +67,8 @@ public class PlayerInputManager : MonoBehaviour
         rinneganAction.canceled += Rinnegan;
 
         throwAction.performed += Throw;
+        
+        boomerangAction.performed += Boomerang;
     }
 
     void Update()
@@ -90,13 +94,6 @@ public class PlayerInputManager : MonoBehaviour
             {
                 player.OnRollInput();
             }
-        }
-        #endregion
-
-        #region Boomerang
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            player.OnBoomerangInput();
         }
         #endregion
     }
@@ -195,6 +192,18 @@ public class PlayerInputManager : MonoBehaviour
             player.OnThrowableInput();
         }
     }
+    #endregion
+
+    #region Boomerang
+    void Boomerang(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            player.OnBoomerangInput();
+        }
+    }
+    
+
     #endregion
     #endregion
 }

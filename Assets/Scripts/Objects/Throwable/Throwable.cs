@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Throwable : MonoBehaviour
@@ -8,16 +6,18 @@ public class Throwable : MonoBehaviour
 
     public LayerMask collisionMask;
     public float range = 1.25f;
+    public float velocity = 10f;
 
     public bool canBePicked;
-    public bool canThrow;
 
     private SpriteRenderer _sr;
+    private Rigidbody2D _rb;
     private Player _player;
     
     void Start()
     {
         _sr = GetComponent<SpriteRenderer>();
+        _rb = GetComponent<Rigidbody2D>();
         _player = Player.Instance;
     }
     
@@ -25,6 +25,17 @@ public class Throwable : MonoBehaviour
     {
         CollisionCheck();
         StateCheck();
+    }
+
+    public void Throw()
+    {
+        state = ThrowableStates.Thrown;
+        transform.position = _player.transform.position;
+        
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 angle = (mousePos - transform.position);
+
+        _rb.velocity = angle * velocity;
     }
     
     private void CollisionCheck()
@@ -37,6 +48,7 @@ public class Throwable : MonoBehaviour
             if (state == ThrowableStates.Idle)
             {
                 canBePicked = false;
+                _player.canPickThrowable = canBePicked;
             }
             return;
         }
@@ -45,6 +57,13 @@ public class Throwable : MonoBehaviour
             if (state == ThrowableStates.Idle && hit.CompareTag("Player"))
             {
                 canBePicked = true;
+                _player.canPickThrowable = canBePicked;
+                _player._pickable = this.gameObject;
+            }
+
+            if (state == ThrowableStates.Thrown && !hit.CompareTag("Player"))
+            {
+                state = ThrowableStates.Discard;
             }
         }
     }
@@ -55,9 +74,14 @@ public class Throwable : MonoBehaviour
         {
             _sr.enabled = false;
         }
-        else
+        else if(state != ThrowableStates.Discard)
         {
             _sr.enabled = true;
+        }
+
+        if (state == ThrowableStates.Discard)
+        {
+            Destroy(gameObject);
         }
     }
     
