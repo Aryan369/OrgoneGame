@@ -92,6 +92,11 @@ public class Player : MonoBehaviour
     #endregion
     
     #region CHAKRA
+
+    [Header("CHAKRA")] 
+    public float maxChakra = 2.5f;
+    private float chakra;
+    
     [Header("SHARINGAN")] 
     public float sharinganTimeScale = .5f;
     private bool isUsingSharingan;
@@ -110,9 +115,9 @@ public class Player : MonoBehaviour
     #region THROWABLE
 
     [Header("THROWABLE")] 
-    public GameObject _throwable = null;
-    public GameObject _pickable = null;
-    public bool canPickThrowable;
+    [HideInInspector] public GameObject _throwable = null;
+    [HideInInspector] public GameObject _pickable = null;
+    [HideInInspector] public bool canPickThrowable;
     
     #endregion
 
@@ -156,6 +161,7 @@ public class Player : MonoBehaviour
         boomerang = GameObject.FindGameObjectWithTag("Boomerang").GetComponent<Boomerang>();
         Rinnegan.Instance.SetRange(range);
         Rinnegan.Instance.SetController(controller);
+        chakra = maxChakra;
 
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -174,6 +180,7 @@ public class Player : MonoBehaviour
             HandleGlide();
             HandleCrouch();
             StartCoroutine(HandleRoll());
+            HandleChakra();
             HandleSharingan();
             HandleRinnegan();
             HandlePushObject();
@@ -466,6 +473,33 @@ public class Player : MonoBehaviour
     }
 
 
+    void HandleChakra()
+    {
+        if (chakra > 0f)
+        {
+            if (isUsingRinnegan)
+            {
+                chakra -= Time.deltaTime * 2f;
+            }
+            else if (isUsingSharingan)
+            {
+                chakra -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            canTeleport = false;
+            isUsingRinnegan = false;
+            isUsingSharingan = false;
+        }
+
+        if (chakra < maxChakra && !isUsingRinnegan && !isUsingSharingan)
+        {
+            chakra += Time.deltaTime;
+        }
+    }
+
+    
     void HandleSharingan()
     {
         if (!isUsingRinnegan)

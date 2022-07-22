@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 1664
+    m_Bits: 640
   pushableMask:
     serializedVersion: 2
     m_Bits: 256
@@ -219,6 +219,7 @@ MonoBehaviour:
   wallJump: {x: 35, y: 20}
   canSlideOnObjects: 0
   isBoomeranging: 0
+  maxChakra: 2.5
   sharinganTimeScale: 0.5
   range: 20
   rinneTimeScale: 0.2
@@ -240,6 +241,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 0}
+  attackAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  mousePosAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!114 &1231558362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +316,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c22e39a1-37c7-45d5-bc8c-67cdf4abbc8a
     m_ActionName: Gameplay/Throw[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6bf5325a-8e20-410d-b14c-ebf9362cb818
+    m_ActionName: Gameplay/Boomerang[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ab70ee62-6749-4e1d-92ff-7ce29ccbb12f
+    m_ActionName: Gameplay/MousePos[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 51b194e5-dacd-490d-b55f-3599cab917cb
+    m_ActionName: Gameplay/Attack[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
