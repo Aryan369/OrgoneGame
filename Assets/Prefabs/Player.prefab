@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1095040796}
   - component: {fileID: 1095040798}
   m_Layer: 6
-  m_Name: Rinnegan field
+  m_Name: Rinnegan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,9 +214,9 @@ MonoBehaviour:
   glideGravityMultiplier: 0.05
   isGliding: 0
   sharinganTimeScale: 0.5
-  isUsingSharingan: 0
   range: 20
   rinneTimeScale: 0.2
+  rinneBufferTime: 0.1
   isBoomeranging: 0
   wallSlideSpeedMax: 5
   wallStickTime: 0.1

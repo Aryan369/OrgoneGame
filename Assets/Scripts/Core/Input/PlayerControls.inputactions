@@ -282,7 +282,7 @@
                 {
                     "name": "",
                     "id": "ac885231-9959-4593-bda5-48d8340ba283",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/leftMeta",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
