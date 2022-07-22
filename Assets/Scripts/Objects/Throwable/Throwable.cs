@@ -39,9 +39,11 @@ public class Throwable : MonoBehaviour
         StateCheck();
     }
 
+    #region Methods
     public void Throw()
     {
         state = ThrowableStates.Thrown;
+        _rb.gravityScale = 0f;
         transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y + 0.25f);
         
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(PlayerInputManager.Instance.mousePosAction.ReadValue<Vector2>());
@@ -49,7 +51,18 @@ public class Throwable : MonoBehaviour
 
         _rb.velocity = angle * velocity;
     }
+
+    public void Replace()
+    {
+        state = ThrowableStates.Replaced;
+        _rb.gravityScale = velocity;
+    }
     
+    #endregion
+    
+    
+    #region Collision Check
+
     private void PlayerCollisionCheck()
     {
         Vector2 origin = new Vector2(transform.position.x, transform.position.y);
@@ -80,13 +93,17 @@ public class Throwable : MonoBehaviour
         Collider2D thrownHit = Physics2D.OverlapCircle(origin, collisionMaskRange, collisionMask);
         if (thrownHit)
         {
-            if (state == ThrowableStates.Thrown)
+            if (state == ThrowableStates.Thrown || state == ThrowableStates.Replaced)
             {
                 state = ThrowableStates.Discard;
             }
         }
     }
+    
+    #endregion
 
+
+    #region State Check
     private void StateCheck()
     {
         if (state == ThrowableStates.Picked)
@@ -110,6 +127,8 @@ public class Throwable : MonoBehaviour
             Destroy(gameObject, 10f);
         }
     }
+    
+    #endregion
     
     private void OnDrawGizmos()
     {

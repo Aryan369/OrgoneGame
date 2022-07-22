@@ -23,7 +23,6 @@ public class Boomerang : RaycastController
     private Transform _player;
     private Vector3 startPoint;
     private Vector3 endPoint;
-    [HideInInspector] public Vector2 directionalInput;
 
     private SpriteRenderer sr;
     private TrailRenderer tr;
@@ -54,8 +53,9 @@ public class Boomerang : RaycastController
     }
 
     #region Methods
-    public void ActivateBoomerang()
+    public void ActivateBoomerang(Vector2 _direction)
     {
+        Vector2 directionalInput = _direction;
         transform.position = _player.position;
         startPoint = transform.position;
         distanceX = distance * directionalInput.x;

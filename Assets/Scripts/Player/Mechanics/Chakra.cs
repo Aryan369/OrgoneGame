@@ -32,7 +32,7 @@ public class Chakra : MonoBehaviour
     public float rinneBufferTime = .15f;
     private float rinneBufferTimeCounter;
     
-    public bool aimSelect = true;
+    public bool aimToSelect = true;
     public bool _360Vision;
     
     #endregion
@@ -65,65 +65,13 @@ public class Chakra : MonoBehaviour
         
         if (GameManager.Instance._gameState == GameState.Rinnegan)
         {
-            Vector2 _origin = new Vector2(transform.position.x, transform.position.y);
-            var hitColliders = Physics2D.OverlapCircleAll(_origin, range, collisionMask);
-
-            for (int i = 0; i < hitColliders.Length; i++)
-            {
-                Vector2 dir = hitColliders[i].transform.position -  transform.position;
-                Physics2D.queriesStartInColliders = false;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, dir);
-                Debug.DrawRay(transform.position, dir, Color.black);
-
-                if (hit)
-                {
-                    if (hit.collider == hitColliders[i])
-                    {
-                        if (_360Vision)
-                        {
-                            hitColliders[i].GetComponent<Aminotejikarable>().isActive = true;
-                        }
-                        else
-                        {
-                            if (Mathf.Sign(hitColliders[i].transform.position.x - transform.position.x) == _controller.collisionData.faceDir)
-                            {
-                                hitColliders[i].GetComponent<Aminotejikarable>().isActive = true;
-                            }
-                            else
-                            {
-                                hitColliders[i].GetComponent<Aminotejikarable>().isActive = false;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        hitColliders[i].GetComponent<Aminotejikarable>().isActive = false;
-                    }
-                }
-            }
-
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(PlayerInputManager.Instance.mousePosAction.ReadValue<Vector2>());
-            Vector2 angle = (mousePos - transform.position);
-
-            RaycastHit2D _hit = Physics2D.Raycast(transform.position, angle, range);
-            Debug.DrawRay(transform.position, angle, Color.green);
-            
-            if (_hit)
-            {
-                if (_hit.collider.CompareTag("Aminotejikarable") || _hit.collider.CompareTag("Throwable"))
-                {
-                    if (_hit.collider.GetComponent<Aminotejikarable>().isActive)
-                    {
-                        _hit.collider.GetComponent<Aminotejikarable>().isHovered = true;
-                    }
-                }
-            }
+            CollisionCheck();
         }
     }
 
 
     #region Methods
-void HandleChakra()
+    void HandleChakra()
     {
         if (chakra > 0f)
         {
@@ -148,7 +96,6 @@ void HandleChakra()
             chakra += Time.deltaTime;
         }
     }
-
     
     void HandleSharingan()
     {
@@ -173,7 +120,6 @@ void HandleChakra()
             Time.timeScale = 1f;
         }
     }
-    
     
     void HandleRinnegan()
     {
@@ -200,7 +146,7 @@ void HandleChakra()
         }
         else 
         {
-            if (!aimSelect)
+            if (!aimToSelect)
             {
                 canTeleport = false;
             }
@@ -208,7 +154,7 @@ void HandleChakra()
 
         if (canTeleport)
         {
-            if (!aimSelect)
+            if (!aimToSelect)
             {
                 if (_replacedObj != null)
                 {
@@ -216,6 +162,10 @@ void HandleChakra()
                     Vector3 _to = _replacedObj.transform.position;
                     _replacedObj.transform.position = transform.position;
                     Player.Instance.transform.position = _to;
+                    if (_replacedObj.CompareTag("Throwable"))
+                    {
+                        _replacedObj.GetComponent<Throwable>().Replace();
+                    }
                     _replacedObj = null;
                     isTeleporting = false;
                     isUsingRinnegan = false;
@@ -232,6 +182,10 @@ void HandleChakra()
                         Vector3 _to = _replacedObj.transform.position;
                         _replacedObj.transform.position = transform.position;
                         Player.Instance.transform.position = _to;
+                        if (_replacedObj.CompareTag("Throwable"))
+                        {
+                            _replacedObj.GetComponent<Throwable>().Replace();
+                        }
                         _replacedObj = null;
                         isTeleporting = false;
                         rinneBufferTimeCounter = rinneBufferTime;
@@ -246,6 +200,66 @@ void HandleChakra()
     }
     
 
+    #endregion
+
+    #region Collision
+    void CollisionCheck()
+    {
+        Vector2 _origin = new Vector2(transform.position.x, transform.position.y);
+        var hitColliders = Physics2D.OverlapCircleAll(_origin, range, collisionMask);
+
+        for (int i = 0; i < hitColliders.Length; i++)
+        {
+            Vector2 dir = hitColliders[i].transform.position -  transform.position;
+            Physics2D.queriesStartInColliders = false;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir);
+            Debug.DrawRay(transform.position, dir, Color.black);
+
+            if (hit)
+            {
+                if (hit.collider == hitColliders[i])
+                {
+                    if (_360Vision)
+                    {
+                        hitColliders[i].GetComponent<Aminotejikarable>().isActive = true;
+                    }
+                    else
+                    {
+                        if (Mathf.Sign(hitColliders[i].transform.position.x - transform.position.x) == _controller.collisionData.faceDir)
+                        {
+                            hitColliders[i].GetComponent<Aminotejikarable>().isActive = true;
+                        }
+                        else
+                        {
+                            hitColliders[i].GetComponent<Aminotejikarable>().isActive = false;
+                        }
+                    }
+                }
+                else
+                {
+                    hitColliders[i].GetComponent<Aminotejikarable>().isActive = false;
+                }
+            }
+        }
+
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(PlayerInputManager.Instance.mousePosAction.ReadValue<Vector2>());
+        Vector2 angle = (mousePos - transform.position);
+
+        RaycastHit2D _hit = Physics2D.Raycast(transform.position, angle, range);
+        Debug.DrawRay(transform.position, angle, Color.green);
+        
+        if (_hit)
+        {
+            if (_hit.collider.CompareTag("Aminotejikarable") || _hit.collider.CompareTag("Throwable"))
+            {
+                if (_hit.collider.GetComponent<Aminotejikarable>().isActive)
+                {
+                    _hit.collider.GetComponent<Aminotejikarable>().isHovered = true;
+                }
+            }
+        }
+    }
+    
     #endregion
 
     #region Gizmos

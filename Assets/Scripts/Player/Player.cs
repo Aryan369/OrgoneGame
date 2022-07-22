@@ -425,16 +425,10 @@ public class Player : MonoBehaviour
         if (!isBoomeranging)
         {
             isBoomeranging = true;
-            Vector2 normalizedInput = directionalInput.normalized;
-            if (normalizedInput == Vector2.zero)
-            {
-                boomerang.directionalInput = (controller.collisionData.faceDir == 1) ? Vector2.right : Vector2.left;
-            }
-            else
-            {
-                boomerang.directionalInput = normalizedInput;
-            }
-            boomerang.ActivateBoomerang();
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(PlayerInputManager.Instance.mousePosAction.ReadValue<Vector2>());
+            Vector2 angle = (mousePos - transform.position);
+            angle = Vector2.ClampMagnitude(angle, 1f);
+            boomerang.ActivateBoomerang(angle);
             boomerang.isBoomeranging = isBoomeranging;
         }
         else
