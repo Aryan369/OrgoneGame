@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 // ReSharper disable All
 
@@ -100,6 +98,8 @@ public class Player : MonoBehaviour
     [Header("SLASH")] 
     public LayerMask enemyMask;
     private float slashRange = 3f;
+    private float slashCooldown = .25f;
+    private float slashCooldownCounter;
 
     #endregion
     
@@ -459,19 +459,30 @@ public class Player : MonoBehaviour
     {
         if (PlayerInputManager.Instance.attackAction.triggered)
         {
-            if (GameManager.Instance._gameState != GameState.Paused && GameManager.Instance._gameState != GameState.Rinnegan)
+            if (slashCooldownCounter <= 0f)
             {
-                Vector3 mousePos = Camera.main.ScreenToWorldPoint(PlayerInputManager.Instance.mousePosAction.ReadValue<Vector2>());
-                Vector2 angle = (mousePos - transform.position);
-                Vector2 displacement = Vector2.ClampMagnitude(angle, 1f) * slashRange;
-                Vector2 pointB = (Vector2)transform.position + displacement;
-                var hit = Physics2D.OverlapAreaAll(transform.position, pointB, enemyMask);
-
-                for (int i = 0; i < hit.Length; i++)
+                if (GameManager.Instance._gameState != GameState.Paused && GameManager.Instance._gameState != GameState.Rinnegan)
                 {
-                    print("hit enemy");
-                }
-            }  
+                    Vector3 mousePos = Camera.main.ScreenToWorldPoint(PlayerInputManager.Instance.mousePosAction.ReadValue<Vector2>());
+                    Vector2 angle = (mousePos - transform.position);
+                    Vector2 displacement = Vector2.ClampMagnitude(angle, 1f) * slashRange;
+                    Vector2 pointB = (Vector2)transform.position + displacement;
+                    var hit = Physics2D.OverlapAreaAll(transform.position, pointB, enemyMask);
+
+                    for (int i = 0; i < hit.Length; i++)
+                    {
+                        slashCooldownCounter = slashCooldown;
+                        print("hit enemy");
+                    }
+                }  
+            }
+        }
+        else
+        {
+            if (slashCooldownCounter > 0f)
+            {
+                slashCooldownCounter -= Time.deltaTime;
+            }
         }
     }
 

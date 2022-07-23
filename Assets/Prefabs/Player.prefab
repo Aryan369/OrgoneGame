@@ -229,6 +229,8 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
+  slashCooldown: 0.25
+  slashCooldownCounter: 0
   _throwable: {fileID: 0}
   _pickable: {fileID: 0}
   canPickThrowable: 0
