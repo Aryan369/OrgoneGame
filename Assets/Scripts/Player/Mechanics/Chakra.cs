@@ -23,7 +23,7 @@ public class Chakra : MonoBehaviour
     public float range = 40f;
     
     public float rinneTimeScale = 0.075f;
-    private float rinneTimeScaleBufferFactor = 3.75f;
+    private float rinneTimeScaleBufferFactor = 2.67f;
     
     [HideInInspector] public bool isUsingRinnegan;
     
