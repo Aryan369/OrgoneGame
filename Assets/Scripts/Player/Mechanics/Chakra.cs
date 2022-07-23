@@ -241,11 +241,13 @@ public class Chakra : MonoBehaviour
             }
         }
 
+        
+        //Aiming
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(PlayerInputManager.Instance.mousePosAction.ReadValue<Vector2>());
-        Vector2 angle = (mousePos - transform.position);
+        Vector2 aimdir = (mousePos - transform.position);
 
-        RaycastHit2D _hit = Physics2D.Raycast(transform.position, angle, range);
-        Debug.DrawRay(transform.position, angle, Color.green);
+        RaycastHit2D _hit = Physics2D.Raycast(transform.position, aimdir, range);
+        Debug.DrawRay(transform.position, aimdir, Color.green);
         
         if (_hit)
         {
@@ -264,7 +266,7 @@ public class Chakra : MonoBehaviour
     #region Gizmos
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
+        Gizmos.color = new Color(.5f, .5f, .9f, 0.3f);
         Gizmos.DrawWireSphere(transform.position, range);
     }
     

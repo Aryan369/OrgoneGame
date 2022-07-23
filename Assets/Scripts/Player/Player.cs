@@ -97,9 +97,10 @@ public class Player : MonoBehaviour
 
     [Header("SLASH")] 
     public LayerMask enemyMask;
+    private Slash slash;
     private float slashRange = 3f;
-    private float slashCooldown = .25f;
-    private float slashCooldownCounter;
+    [HideInInspector] public float slashCooldown = .25f;
+    [HideInInspector] public float slashCooldownCounter;
 
     #endregion
     
@@ -152,6 +153,8 @@ public class Player : MonoBehaviour
     {
         controller = GetComponent<Controller2D>();
         boomerang = GameObject.FindGameObjectWithTag("Boomerang").GetComponent<Boomerang>();
+        slash = transform.GetChild(1).GetComponent<Slash>();
+        slash.Initiate(slashRange);
 
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -397,6 +400,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    
     void HandleInteractions()
     {
         canInteract = controller.collisionData.canInteract;
@@ -441,8 +445,7 @@ public class Player : MonoBehaviour
         {
             isBoomeranging = true;
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(PlayerInputManager.Instance.mousePosAction.ReadValue<Vector2>());
-            Vector2 angle = (mousePos - transform.position);
-            angle = Vector2.ClampMagnitude(angle, 1f);
+            Vector2 angle = (mousePos - transform.position).normalized;
             boomerang.ActivateBoomerang(angle);
             boomerang.isBoomeranging = isBoomeranging;
         }
@@ -464,16 +467,15 @@ public class Player : MonoBehaviour
                 if (GameManager.Instance._gameState != GameState.Paused && GameManager.Instance._gameState != GameState.Rinnegan)
                 {
                     Vector3 mousePos = Camera.main.ScreenToWorldPoint(PlayerInputManager.Instance.mousePosAction.ReadValue<Vector2>());
-                    Vector2 angle = (mousePos - transform.position);
-                    Vector2 displacement = Vector2.ClampMagnitude(angle, 1f) * slashRange;
-                    Vector2 pointB = (Vector2)transform.position + displacement;
-                    var hit = Physics2D.OverlapAreaAll(transform.position, pointB, enemyMask);
-
-                    for (int i = 0; i < hit.Length; i++)
+                    
+                    if (Mathf.Sign(mousePos.x - transform.position.x) != controller.collisionData.faceDir)
                     {
-                        slashCooldownCounter = slashCooldown;
-                        print("hit enemy");
+                        controller.collisionData.faceDir *= -1;
                     }
+                    
+                    Vector2 slashDir = (mousePos - transform.position).normalized;
+                    float angle = Mathf.Atan2(slashDir.y, slashDir.x) * Mathf.Rad2Deg;
+                    slash.DoSlash(angle);
                 }  
             }
         }
@@ -702,7 +704,7 @@ public class Player : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = new Color(1f, 0.8f, 1f);
+        Gizmos.color = new Color(1f, 0.8f, 1f, 0.2f);
         Gizmos.DrawWireSphere(transform.position, slashRange);
     }
 
