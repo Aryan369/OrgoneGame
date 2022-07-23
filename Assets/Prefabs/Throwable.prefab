@@ -148,14 +148,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  collisionMask:
+  _collisionMask:
     serializedVersion: 2
     m_Bits: 1088
-  velocity: 2.5
+  _playerMask:
+    serializedVersion: 2
+    m_Bits: 8
   playerMaskRangeFactor: 1.5
+  canBePicked: 0
 --- !u!114 &6115083987636096875
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,8 +4,8 @@ public class Throwable : MonoBehaviour
 {
     [HideInInspector] public ThrowableStates state = ThrowableStates.Idle;
 
-    public LayerMask collisionMask;
-    public LayerMask playerMask;
+    public LayerMask _collisionMask;
+    public LayerMask _playerMask;
     
     private float velocity = 2.5f;
 
@@ -66,7 +66,7 @@ public class Throwable : MonoBehaviour
     private void PlayerCollisionCheck()
     {
         Vector2 origin = new Vector2(transform.position.x, transform.position.y);
-        Collider2D playerHit = Physics2D.OverlapCircle(origin, playerMaskRange, playerMask);
+        Collider2D playerHit = Physics2D.OverlapCircle(origin, playerMaskRange, _playerMask);
         if (!playerHit)
         {
             if (state == ThrowableStates.Idle)
@@ -91,7 +91,7 @@ public class Throwable : MonoBehaviour
         if (state == ThrowableStates.Thrown || state == ThrowableStates.Replaced)
         {
             Vector2 origin = new Vector2(transform.position.x, transform.position.y);
-            Collider2D thrownHit = Physics2D.OverlapCircle(origin, collisionMaskRange, collisionMask);
+            Collider2D thrownHit = Physics2D.OverlapCircle(origin, collisionMaskRange, _collisionMask);
             if (thrownHit)
             {
                 state = ThrowableStates.Discard;
