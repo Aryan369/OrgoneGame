@@ -65,19 +65,16 @@ public class Throwable : MonoBehaviour
 
     private void PlayerCollisionCheck()
     {
-        Vector2 origin = new Vector2(transform.position.x, transform.position.y);
-        Collider2D playerHit = Physics2D.OverlapCircle(origin, playerMaskRange, _playerMask);
-        if (!playerHit)
+        if (state == ThrowableStates.Idle)
         {
-            if (state == ThrowableStates.Idle)
+            Vector2 origin = new Vector2(transform.position.x, transform.position.y);
+            Collider2D playerHit = Physics2D.OverlapCircle(origin, playerMaskRange, _playerMask);
+            if (!playerHit)
             {
                 canBePicked = false;
+                return;
             }
-            return;
-        }
-        if (playerHit)
-        {
-            if (state == ThrowableStates.Idle && playerHit.CompareTag("Player"))
+            if (playerHit)
             {
                 canBePicked = true;
                 _player.canPickThrowable = canBePicked;

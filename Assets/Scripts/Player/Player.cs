@@ -209,7 +209,11 @@ public class Player : MonoBehaviour
 
         if (!canPickThrowable)
         {
-            _pickable = null;
+            ResetPickableObj();
+        }
+        else
+        {
+            Invoke("ResetPickableObj", .1f);
         }
     }
 
@@ -458,6 +462,7 @@ public class Player : MonoBehaviour
     }
 
 
+    #region Slash
     void HandleSlash()
     {
         if (PlayerInputManager.Instance.attackAction.triggered)
@@ -487,8 +492,11 @@ public class Player : MonoBehaviour
             }
         }
     }
-
     
+    #endregion
+
+
+    #region Throwable
     void HandleThrowable()
     {
         if (canPickThrowable)
@@ -516,8 +524,15 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
 
+    void ResetPickableObj()
+    {
+        _pickable = null;
+    }
+    
+    #endregion
+    
+    
     void CalculateVelocity()
     {
         if (canMove)
