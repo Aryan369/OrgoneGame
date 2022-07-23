@@ -88,11 +88,11 @@ public class Throwable : MonoBehaviour
 
     private void ThrownCollisionCheck()
     {
-        Vector2 origin = new Vector2(transform.position.x, transform.position.y);
-        Collider2D thrownHit = Physics2D.OverlapCircle(origin, collisionMaskRange, collisionMask);
-        if (thrownHit)
+        if (state == ThrowableStates.Thrown || state == ThrowableStates.Replaced)
         {
-            if (state == ThrowableStates.Thrown || state == ThrowableStates.Replaced)
+            Vector2 origin = new Vector2(transform.position.x, transform.position.y);
+            Collider2D thrownHit = Physics2D.OverlapCircle(origin, collisionMaskRange, collisionMask);
+            if (thrownHit)
             {
                 state = ThrowableStates.Discard;
             }
