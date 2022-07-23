@@ -130,7 +130,7 @@ MonoBehaviour:
     m_Bits: 1096
   pushableMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   maxSlopeAngle: 80
 --- !u!114 &6412363912667383050
 MonoBehaviour:
