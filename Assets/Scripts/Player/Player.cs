@@ -107,9 +107,9 @@ public class Player : MonoBehaviour
     #region THROWABLE
 
     [Header("THROWABLE")] 
-    [HideInInspector] public GameObject _throwable = null;
-    [HideInInspector] public GameObject _pickable = null;
-    [HideInInspector] public bool canPickThrowable;
+    public GameObject _throwable = null;
+    public GameObject _pickable = null;
+    public bool canPickThrowable;
     
     #endregion
     

@@ -4,17 +4,17 @@ public class Throwable : MonoBehaviour
 {
     [HideInInspector] public ThrowableStates state = ThrowableStates.Idle;
 
-    public LayerMask playerMask;
     public LayerMask collisionMask;
+    public LayerMask playerMask;
     
-    public float velocity = 2.5f;
+    private float velocity = 2.5f;
 
     public float playerMaskRangeFactor = 1.5f;
     private float playerMaskRange;
     
     private float collisionMaskRange;
 
-    private bool canBePicked;
+    public bool canBePicked;
     
     private SpriteRenderer _sr;
     private Rigidbody2D _rb;
@@ -34,8 +34,8 @@ public class Throwable : MonoBehaviour
     void Update()
     {
         ThrownCollisionCheck();
-        PlayerCollisionCheck();
         StateCheck();
+        PlayerCollisionCheck();
     }
 
     #region Methods
@@ -72,7 +72,6 @@ public class Throwable : MonoBehaviour
             if (state == ThrowableStates.Idle)
             {
                 canBePicked = false;
-                _player.canPickThrowable = canBePicked;
             }
             return;
         }
