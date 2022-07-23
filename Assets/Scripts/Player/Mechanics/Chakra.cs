@@ -10,7 +10,7 @@ public class Chakra : MonoBehaviour
     #region CHAKRA
 
     [Header("CHAKRA")] 
-    public float maxChakra = 2.5f;
+    public float maxChakra = 8f;
     private float chakra;
     
     [Header("SHARINGAN")] 
@@ -20,10 +20,10 @@ public class Chakra : MonoBehaviour
     [Header("RINNEGAN")] 
     public LayerMask collisionMask;
     
-    public float range = 20f;
+    public float range = 40f;
     
-    public float rinneTimeScale = 0.0001f;
-    private float rinneTimeScaleBufferFactor = 2000f;
+    public float rinneTimeScale = 0.05f;
+    private float rinneTimeScaleBufferFactor = 4f;
     
     [HideInInspector] public bool isUsingRinnegan;
     
@@ -78,11 +78,11 @@ public class Chakra : MonoBehaviour
         {
             if (isUsingRinnegan)
             {
-                chakra -= Time.deltaTime * 2f;
+                chakra -= (Time.deltaTime * 1.25f) / rinneTimeScale;
             }
             else if (isUsingSharingan)
             {
-                chakra -= Time.deltaTime;
+                chakra -= Time.deltaTime / sharinganTimeScale;
             }
         }
         else
@@ -94,7 +94,7 @@ public class Chakra : MonoBehaviour
 
         if (chakra < maxChakra && !isUsingRinnegan && !isUsingSharingan)
         {
-            chakra += Time.deltaTime;
+            chakra += Time.deltaTime * 2.5f;
         }
     }
     

@@ -1219,22 +1219,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1095040798, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
-      propertyPath: _360Vision
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1095040798, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
-      propertyPath: aimToSelect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1095040798, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
-      propertyPath: rinneTimeScale
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 1095040798, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
-      propertyPath: collisionMask.m_Bits
-      value: 1536
-      objectReference: {fileID: 0}
     - target: {fileID: 3030541206826440568, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
       propertyPath: m_RootOrder
       value: 1

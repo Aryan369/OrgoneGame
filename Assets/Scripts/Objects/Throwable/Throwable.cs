@@ -7,7 +7,7 @@ public class Throwable : MonoBehaviour
     public LayerMask playerMask;
     public LayerMask collisionMask;
     
-    public float velocity = 4f;
+    public float velocity = 2.5f;
 
     public float playerMaskRangeFactor = 1.5f;
     private float playerMaskRange;

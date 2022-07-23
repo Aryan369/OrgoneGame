@@ -44,14 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc9fc498d711e49a79c3b691ac99f2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxChakra: 2.5
-  sharinganTimeScale: 0.5
+  maxChakra: 8
+  chakra: 0
+  sharinganTimeScale: 0.4
   isUsingSharingan: 0
   collisionMask:
     serializedVersion: 2
     m_Bits: 1536
-  range: 20
-  rinneTimeScale: 0.2
+  range: 40
+  rinneTimeScale: 0.05
   isUsingRinnegan: 0
   rinneBufferTime: 0.15
   aimToSelect: 1
