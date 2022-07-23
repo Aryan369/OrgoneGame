@@ -132,9 +132,9 @@ public class Throwable : MonoBehaviour
     
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.white;
+        Gizmos.color = new Color(1f, 1f, 0f, 0.1f);
         Gizmos.DrawWireSphere(transform.position, playerMaskRange);
-        Gizmos.color = Color.cyan;
+        Gizmos.color = new Color(0f, 1f, 1f, 1f);
         Gizmos.DrawWireSphere(transform.position, collisionMaskRange);
     }
 }

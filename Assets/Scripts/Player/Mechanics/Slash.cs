@@ -15,8 +15,9 @@ public class Slash : MonoBehaviour
         {
             print("hit enemy");
             Player.Instance.slashCooldownCounter = Player.Instance.slashCooldown;
-            hitbox.enabled = false;
         }
+        
+        hitbox.enabled = false;
     }
 
     #region Methods
