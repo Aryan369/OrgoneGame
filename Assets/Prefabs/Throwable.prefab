@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6115083987636096873}
   - component: {fileID: 6115083987636096878}
   - component: {fileID: 6115083987636096875}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Throwable
   m_TagString: Throwable
   m_Icon: {fileID: 0}
@@ -150,10 +150,10 @@ MonoBehaviour:
   state: 0
   playerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
   collisionMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1088
   velocity: 2.5
   playerMaskRangeFactor: 1.5
 --- !u!114 &6115083987636096875

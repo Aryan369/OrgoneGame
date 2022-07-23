@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 131595340}
   - component: {fileID: 7405105196685407664}
   - component: {fileID: 131595342}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1095040796}
   - component: {fileID: 1095040798}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Rinnegan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ MonoBehaviour:
   isUsingSharingan: 0
   collisionMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 768
   range: 30
   rinneTimeScale: 0.075
   isUsingRinnegan: 0
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 3030541206826440575}
   - component: {fileID: 3030541206826440572}
   - component: {fileID: 1231558362}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -281,10 +281,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 576
   pushableMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   maxSlopeAngle: 80
 --- !u!114 &3030541206826440575
 MonoBehaviour:

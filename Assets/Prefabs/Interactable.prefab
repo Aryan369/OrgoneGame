@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6068140872406699526}
   - component: {fileID: 6068140872406699545}
   - component: {fileID: 6068140872406699527}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Interactable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
   range: 5
   collisionMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
   cue0: {fileID: 21300000, guid: db24de7b38fe54aa18129213d285d730, type: 3}
   cue1: {fileID: 21300000, guid: 6c6860e651c334ebf888610dede7cec2, type: 3}
 --- !u!1 &6068140872538276231
@@ -114,7 +114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6068140872538276228}
   - component: {fileID: 6068140872538276229}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Cue
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1272007381982209533}
   - component: {fileID: 1272007381982209530}
   - component: {fileID: 1272007381982209532}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Aminotejikarable
   m_TagString: Aminotejikarable
   m_Icon: {fileID: 0}

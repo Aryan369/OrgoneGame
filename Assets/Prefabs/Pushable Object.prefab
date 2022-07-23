@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6412363912667383053}
   - component: {fileID: 6412363912667383051}
   - component: {fileID: 6412363912667383050}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Pushable Object
   m_TagString: Pushable
   m_Icon: {fileID: 0}
@@ -127,10 +127,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 1096
   pushableMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   maxSlopeAngle: 80
 --- !u!114 &6412363912667383050
 MonoBehaviour:

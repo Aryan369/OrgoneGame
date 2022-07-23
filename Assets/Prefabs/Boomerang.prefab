@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 559198379871820522}
   - component: {fileID: 559198379871820523}
   - component: {fileID: 794618600}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Boomerang
   m_TagString: Boomerang
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 896
+    m_Bits: 1096
   speed: 13
   distance: 13
   waitTime: 0.15
@@ -135,7 +135,6 @@ MonoBehaviour:
   isBoomeranging: 0
   isReturning: 0
   onReturn: 0
-  directionalInput: {x: 0, y: 0}
 --- !u!96 &794618600
 TrailRenderer:
   serializedVersion: 2

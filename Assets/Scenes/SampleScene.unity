@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 203112112}
   - component: {fileID: 203112111}
   - component: {fileID: 203112110}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -244,6 +244,10 @@ PrefabInstance:
     - target: {fileID: 1014629342379426, guid: e717926c164954cc697ed3ef8ccf6a32, type: 3}
       propertyPath: m_Name
       value: Cameras
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884548363852062, guid: e717926c164954cc697ed3ef8ccf6a32, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4030989770181816, guid: e717926c164954cc697ed3ef8ccf6a32, type: 3}
       propertyPath: m_RootOrder
@@ -382,7 +386,7 @@ GameObject:
   - component: {fileID: 1045201529}
   - component: {fileID: 1045201528}
   - component: {fileID: 1045201527}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Slope
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -582,7 +586,7 @@ GameObject:
   - component: {fileID: 1257898995}
   - component: {fileID: 1257898994}
   - component: {fileID: 1257898997}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Platform
   m_TagString: Platform Effector
   m_Icon: {fileID: 0}
@@ -757,7 +761,7 @@ GameObject:
   - component: {fileID: 1403649538}
   - component: {fileID: 1403649537}
   - component: {fileID: 1403649536}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Ground (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -913,7 +917,7 @@ GameObject:
   - component: {fileID: 1741665044}
   - component: {fileID: 1741665043}
   - component: {fileID: 1741665042}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Ground (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1024,7 +1028,7 @@ GameObject:
   - component: {fileID: 2000792169}
   - component: {fileID: 2000792168}
   - component: {fileID: 2000792167}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1136,7 +1140,7 @@ GameObject:
   - component: {fileID: 2019636991}
   - component: {fileID: 2019636990}
   - component: {fileID: 2019636989}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Platform (1)
   m_TagString: Platform Effector
   m_Icon: {fileID: 0}
@@ -1329,10 +1333,6 @@ PrefabInstance:
     - target: {fileID: 1272007381982209529, guid: 9ccaa717c96314803bea4357f5c99f74, type: 3}
       propertyPath: m_Name
       value: Aminotejikara
-      objectReference: {fileID: 0}
-    - target: {fileID: 1272007381982209529, guid: 9ccaa717c96314803bea4357f5c99f74, type: 3}
-      propertyPath: m_TagString
-      value: Aminotejikarable
       objectReference: {fileID: 0}
     - target: {fileID: 1272007381982209531, guid: 9ccaa717c96314803bea4357f5c99f74, type: 3}
       propertyPath: m_RootOrder
