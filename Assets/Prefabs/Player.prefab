@@ -50,7 +50,7 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 1536
-  range: 40
+  range: 30
   rinneTimeScale: 0.075
   isUsingRinnegan: 0
   rinneBufferTime: 0.15
@@ -226,6 +226,9 @@ MonoBehaviour:
   wallJump: {x: 35, y: 20}
   canSlideOnObjects: 0
   isBoomeranging: 0
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 128
   _throwable: {fileID: 0}
   _pickable: {fileID: 0}
   canPickThrowable: 0

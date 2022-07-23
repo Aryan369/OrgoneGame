@@ -14,13 +14,13 @@ public class Chakra : MonoBehaviour
     private float chakra;
     
     [Header("SHARINGAN")] 
-    public float sharinganTimeScale = .5f;
+    public float sharinganTimeScale = .4f;
     [HideInInspector] public bool isUsingSharingan;
     
     [Header("RINNEGAN")] 
     public LayerMask collisionMask;
     
-    public float range = 40f;
+    public float range = 30f;
     
     public float rinneTimeScale = 0.075f;
     private float rinneTimeScaleBufferFactor = 2.67f;

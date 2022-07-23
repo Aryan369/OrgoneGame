@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 // ReSharper disable All
 
@@ -91,6 +93,16 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region ATTACK
+    
+    #region Slash
+
+    [Header("SLASH")] 
+    public LayerMask enemyMask;
+    private float slashRange = 3f;
+
+    #endregion
+    
     #region THROWABLE
 
     [Header("THROWABLE")] 
@@ -99,7 +111,9 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool canPickThrowable;
     
     #endregion
-
+    
+    #endregion
+    
     #region INTERACTION
     [Header("INTERACTION")]
     private bool canInteract;
@@ -159,6 +173,7 @@ public class Player : MonoBehaviour
             HandlePushObject();
             HandleWallSliding();
             HandleClampedFallSpeed();
+            HandleSlash();
         }
 
         controller.Move(velocity * Time.deltaTime, directionalInput);
@@ -440,6 +455,27 @@ public class Player : MonoBehaviour
     }
 
 
+    void HandleSlash()
+    {
+        if (PlayerInputManager.Instance.attackAction.triggered)
+        {
+            if (GameManager.Instance._gameState != GameState.Paused && GameManager.Instance._gameState != GameState.Rinnegan)
+            {
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(PlayerInputManager.Instance.mousePosAction.ReadValue<Vector2>());
+                Vector2 angle = (mousePos - transform.position);
+                Vector2 displacement = Vector2.ClampMagnitude(angle, 1f) * slashRange;
+                Vector2 pointB = (Vector2)transform.position + displacement;
+                var hit = Physics2D.OverlapAreaAll(transform.position, pointB, enemyMask);
+
+                for (int i = 0; i < hit.Length; i++)
+                {
+                    print("hit enemy");
+                }
+            }  
+        }
+    }
+
+    
     void HandleThrowable()
     {
         if (canPickThrowable)
@@ -467,6 +503,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+    
 
     void CalculateVelocity()
     {
@@ -647,6 +684,16 @@ public class Player : MonoBehaviour
     }
 
     #endregion
+
+    #endregion
+
+    #region Gizmos
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1f, 0.8f, 1f);
+        Gizmos.DrawWireSphere(transform.position, slashRange);
+    }
 
     #endregion
 }
