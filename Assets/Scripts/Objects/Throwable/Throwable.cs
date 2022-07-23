@@ -1,9 +1,8 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Throwable : MonoBehaviour
 {
-    public ThrowableStates state = ThrowableStates.Idle;
+    [HideInInspector] public ThrowableStates state = ThrowableStates.Idle;
 
     public LayerMask playerMask;
     public LayerMask collisionMask;
@@ -55,6 +54,7 @@ public class Throwable : MonoBehaviour
     public void Replace()
     {
         state = ThrowableStates.Replaced;
+        _rb.velocity = Vector2.zero;;
         _rb.gravityScale = velocity;
     }
     

@@ -22,7 +22,8 @@ public class Chakra : MonoBehaviour
     
     public float range = 20f;
     
-    public float rinneTimeScale = .2f;
+    public float rinneTimeScale = 0.0001f;
+    private float rinneTimeScaleBufferFactor = 2000f;
     
     [HideInInspector] public bool isUsingRinnegan;
     
@@ -169,6 +170,7 @@ public class Chakra : MonoBehaviour
                     _replacedObj = null;
                     isTeleporting = false;
                     isUsingRinnegan = false;
+                    Time.timeScale = rinneTimeScale * rinneTimeScaleBufferFactor;
                     rinneBufferTimeCounter = rinneBufferTime;
                 }
             }
@@ -188,6 +190,7 @@ public class Chakra : MonoBehaviour
                         }
                         _replacedObj = null;
                         isTeleporting = false;
+                        Time.timeScale = rinneTimeScale * rinneTimeScaleBufferFactor;
                         rinneBufferTimeCounter = rinneBufferTime;
                     }
                     
@@ -234,10 +237,6 @@ public class Chakra : MonoBehaviour
                             hitColliders[i].GetComponent<Aminotejikarable>().isActive = false;
                         }
                     }
-                }
-                else
-                {
-                    hitColliders[i].GetComponent<Aminotejikarable>().isActive = false;
                 }
             }
         }

@@ -22,6 +22,11 @@ public class Aminotejikarable : MonoBehaviour
         
         if (GameManager.Instance._gameState == GameState.Rinnegan)
         {
+            if (Vector2.Distance(transform.position, Player.Instance.transform.position) > Chakra.Instance.range)
+            {
+                isActive = false;
+            }
+            
             if (isSelected && Chakra.Instance._replacedObj != this.gameObject)
             {
                 isSelected = false;
