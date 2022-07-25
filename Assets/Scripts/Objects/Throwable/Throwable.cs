@@ -65,6 +65,10 @@ public class Throwable : MonoBehaviour
             Collider2D thrownHit = Physics2D.OverlapCircle(origin, collisionMaskRange, _collisionMask);
             if (thrownHit)
             {
+                if (thrownHit.CompareTag("Enemy"))
+                {
+                    print("bit enemy");
+                }
                 state = ThrowableStates.Discard;
             }
         }
