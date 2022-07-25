@@ -601,7 +601,7 @@ public class Player : MonoBehaviour
     #region Throwable
     public void OnThrowableInput()
     {
-        Slash.Instance.HandleThrowable();
+        Attack.Instance.HandleThrowable();
     }
 
     #endregion

@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Slash : MonoBehaviour
+public class Attack : MonoBehaviour
 {
     #region Variables
     
-    public static Slash Instance;
+    public static Attack Instance;
     
     private BoxCollider2D hitbox;
     
