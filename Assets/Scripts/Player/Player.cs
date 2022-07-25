@@ -91,30 +91,6 @@ public class Player : MonoBehaviour
 
     #endregion
 
-    #region ATTACK
-    
-    #region Slash
-
-    [Header("SLASH")] 
-    public LayerMask enemyMask;
-    private Slash slash;
-    private float slashRange = 3f;
-    [HideInInspector] public float slashCooldown = .25f;
-    [HideInInspector] public float slashCooldownCounter;
-
-    #endregion
-    
-    #region THROWABLE
-
-    [Header("THROWABLE")] 
-    public GameObject _throwable = null;
-    public GameObject _pickable = null;
-    public bool canPickThrowable;
-    
-    #endregion
-    
-    #endregion
-    
     #region INTERACTION
     [Header("INTERACTION")]
     private bool canInteract;
@@ -153,8 +129,6 @@ public class Player : MonoBehaviour
     {
         controller = GetComponent<Controller2D>();
         boomerang = GameObject.FindGameObjectWithTag("Boomerang").GetComponent<Boomerang>();
-        slash = transform.GetChild(1).GetComponent<Slash>();
-        slash.Initiate(slashRange);
 
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -176,7 +150,6 @@ public class Player : MonoBehaviour
             HandlePushObject();
             HandleWallSliding();
             HandleClampedFallSpeed();
-            HandleSlash();
         }
 
         controller.Move(velocity * Time.deltaTime, directionalInput);
@@ -205,15 +178,6 @@ public class Player : MonoBehaviour
             {
                 velocity.y = 0f;
             }
-        }
-
-        if (!canPickThrowable)
-        {
-            ResetPickableObj();
-        }
-        else
-        {
-            Invoke("ResetPickableObj", .1f);
         }
     }
 
@@ -462,77 +426,6 @@ public class Player : MonoBehaviour
     }
 
 
-    #region Slash
-    void HandleSlash()
-    {
-        if (PlayerInputManager.Instance.attackAction.triggered)
-        {
-            if (slashCooldownCounter <= 0f)
-            {
-                if (GameManager.Instance._gameState != GameState.Paused && GameManager.Instance._gameState != GameState.Rinnegan)
-                {
-                    Vector3 mousePos = Camera.main.ScreenToWorldPoint(PlayerInputManager.Instance.mousePosAction.ReadValue<Vector2>());
-                    
-                    if (Mathf.Sign(mousePos.x - transform.position.x) != controller.collisionData.faceDir)
-                    {
-                        controller.collisionData.faceDir *= -1;
-                    }
-                    
-                    Vector2 slashDir = (mousePos - transform.position).normalized;
-                    float angle = Mathf.Atan2(slashDir.y, slashDir.x) * Mathf.Rad2Deg;
-                    slash.DoSlash(angle);
-                }  
-            }
-        }
-        else
-        {
-            if (slashCooldownCounter > 0f)
-            {
-                slashCooldownCounter -= Time.deltaTime;
-            }
-        }
-    }
-    
-    #endregion
-
-
-    #region Throwable
-    void HandleThrowable()
-    {
-        if (canPickThrowable)
-        {
-            if (_throwable != null)
-            {
-                _throwable.GetComponent<Throwable>().state = ThrowableStates.Discard;
-                _throwable = _pickable;
-                _throwable.GetComponent<Throwable>().state = ThrowableStates.Picked;
-            }
-            else
-            {
-                _throwable = _pickable;
-                _throwable.GetComponent<Throwable>().state = ThrowableStates.Picked;
-            }
-            
-            canPickThrowable = false;
-        }
-        else
-        {
-            if (_throwable != null)
-            {
-                _throwable.GetComponent<Throwable>().Throw();
-                _throwable = null;
-            }
-        }
-    }
-
-    void ResetPickableObj()
-    {
-        _pickable = null;
-    }
-    
-    #endregion
-    
-    
     void CalculateVelocity()
     {
         if (canMove)
@@ -708,20 +601,10 @@ public class Player : MonoBehaviour
     #region Throwable
     public void OnThrowableInput()
     {
-        HandleThrowable();
+        Slash.Instance.HandleThrowable();
     }
 
     #endregion
-
-    #endregion
-
-    #region Gizmos
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(1f, 0.8f, 1f, 0.2f);
-        Gizmos.DrawWireSphere(transform.position, slashRange);
-    }
 
     #endregion
 }

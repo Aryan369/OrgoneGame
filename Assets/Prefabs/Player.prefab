@@ -72,6 +72,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cbefc06967214a7287b79e70a0734c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slashCooldown: 0.25
+  slashCooldownCounter: 0
+  _throwableMask:
+    serializedVersion: 2
+    m_Bits: 512
+  _throwable: {fileID: 0}
+  _pickable: {fileID: 0}
+  canPickThrowable: 0
 --- !u!50 &131595342
 Rigidbody2D:
   serializedVersion: 4
@@ -320,14 +328,6 @@ MonoBehaviour:
   wallJump: {x: 35, y: 20}
   canSlideOnObjects: 0
   isBoomeranging: 0
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 128
-  slashCooldown: 0.25
-  slashCooldownCounter: 0
-  _throwable: {fileID: 0}
-  _pickable: {fileID: 0}
-  canPickThrowable: 0
   velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &3030541206826440572
 MonoBehaviour:

@@ -5,13 +5,9 @@ public class Throwable : MonoBehaviour
     [HideInInspector] public ThrowableStates state = ThrowableStates.Idle;
 
     public LayerMask _collisionMask;
-    public LayerMask _playerMask;
     
     private float velocity = 2.5f;
 
-    public float playerMaskRangeFactor = 1.5f;
-    private float playerMaskRange;
-    
     private float collisionMaskRange;
 
     public bool canBePicked;
@@ -27,7 +23,6 @@ public class Throwable : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<BoxCollider2D>();
         _player = Player.Instance;
-        playerMaskRange = transform.localScale.x * playerMaskRangeFactor;
         collisionMaskRange = transform.localScale.x * 0.5f;
     }
     
@@ -35,7 +30,6 @@ public class Throwable : MonoBehaviour
     {
         ThrownCollisionCheck();
         StateCheck();
-        PlayerCollisionCheck();
     }
 
     #region Methods
@@ -62,27 +56,7 @@ public class Throwable : MonoBehaviour
     
     
     #region Collision Check
-
-    private void PlayerCollisionCheck()
-    {
-        if (state == ThrowableStates.Idle)
-        {
-            Vector2 origin = new Vector2(transform.position.x, transform.position.y);
-            Collider2D playerHit = Physics2D.OverlapCircle(origin, playerMaskRange, _playerMask);
-            if (!playerHit)
-            {
-                canBePicked = false;
-                return;
-            }
-            if (playerHit)
-            {
-                canBePicked = true;
-                _player.canPickThrowable = canBePicked;
-                _player._pickable = this.gameObject;
-            }
-        }
-    }
-
+    
     private void ThrownCollisionCheck()
     {
         if (state == ThrowableStates.Thrown || state == ThrowableStates.Replaced)
@@ -128,8 +102,6 @@ public class Throwable : MonoBehaviour
     
     private void OnDrawGizmos()
     {
-        Gizmos.color = new Color(1f, 1f, 0f, 0.1f);
-        Gizmos.DrawWireSphere(transform.position, playerMaskRange);
         Gizmos.color = new Color(0f, 1f, 1f, 1f);
         Gizmos.DrawWireSphere(transform.position, collisionMaskRange);
     }
