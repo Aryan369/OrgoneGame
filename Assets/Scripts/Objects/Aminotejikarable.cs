@@ -47,7 +47,7 @@ public class Aminotejikarable : MonoBehaviour
     {
         if (!Chakra.Instance.aimToSelect)
         {
-            if (PlayerInputManager.Instance.attackAction.triggered)
+            if (InputProvider.Instance.attackAction.triggered)
             {
                 if (isHovered)
                 {

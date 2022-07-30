@@ -151,12 +151,15 @@ public class Boomerang : RaycastController
 
                 if (hit)
                 {
-                    percentBetweenPoints = 0.2f;
-                    isReturning = true;
-                    startPoint = transform.position;
-                    endPoint = _player.position;
-                    onReturn = true;
-                    nextMoveTime = Time.time;
+                    if (!isReturning && !hit.collider.CompareTag("Player"))
+                    {
+                        percentBetweenPoints = 0.2f;
+                        isReturning = true;
+                        startPoint = transform.position;
+                        endPoint = _player.position;
+                        onReturn = true;
+                        nextMoveTime = Time.time;
+                    }
                 }
             }
         }
@@ -175,12 +178,15 @@ public class Boomerang : RaycastController
 
                 if (hit)
                 {
-                    percentBetweenPoints = 0.2f;
-                    isReturning = true;
-                    startPoint = transform.position;
-                    endPoint = _player.position;
-                    onReturn = true;
-                    nextMoveTime = Time.time;
+                    if (!isReturning && !hit.collider.CompareTag("Player"))
+                    {
+                        percentBetweenPoints = 0.2f;
+                        isReturning = true;
+                        startPoint = transform.position;
+                        endPoint = _player.position;
+                        onReturn = true;
+                        nextMoveTime = Time.time;
+                    }
                 }
             }
         }

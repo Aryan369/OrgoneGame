@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 // ReSharper disable All
 
-[RequireComponent(typeof(Controller2D), typeof(PlayerInputManager))]
+[RequireComponent(typeof(Controller2D), typeof(InputProvider))]
 public class Player : MonoBehaviour
 {
     #region Variables & Constants
@@ -412,7 +412,7 @@ public class Player : MonoBehaviour
         if (!isBoomeranging)
         {
             isBoomeranging = true;
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(PlayerInputManager.Instance.mousePosAction.ReadValue<Vector2>());
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputProvider.Instance.mousePosAction.ReadValue<Vector2>());
             Vector2 angle = (mousePos - transform.position).normalized;
             boomerang.ActivateBoomerang(angle);
             boomerang.isBoomeranging = isBoomeranging;

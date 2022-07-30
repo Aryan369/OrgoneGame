@@ -67,13 +67,13 @@ public class Attack : MonoBehaviour
     
     private void HandleSlash()
     {
-        if (PlayerInputManager.Instance.attackAction.triggered)
+        if (InputProvider.Instance.attackAction.triggered)
         {
             if (slashCooldownCounter <= 0f)
             {
                 if (GameManager.Instance._gameState != GameState.Paused && GameManager.Instance._gameState != GameState.Rinnegan)
                 {
-                    Vector3 mousePos = Camera.main.ScreenToWorldPoint(PlayerInputManager.Instance.mousePosAction.ReadValue<Vector2>());
+                    Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputProvider.Instance.mousePosAction.ReadValue<Vector2>());
                     
                     if (Mathf.Sign(mousePos.x - transform.position.x) != Player.Instance.controller.collisionData.faceDir)
                     {
