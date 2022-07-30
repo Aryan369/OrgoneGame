@@ -5,7 +5,7 @@ public class Chakra : MonoBehaviour
 {
     public static Chakra Instance;
     
-    private Controller2D _controller;
+    private Controller _controller;
 
     #region CHAKRA
 
@@ -243,7 +243,7 @@ public class Chakra : MonoBehaviour
 
         
         //Aiming
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputProvider.Instance.mousePosAction.ReadValue<Vector2>());
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputManager.Instance.mousePosAction.ReadValue<Vector2>());
         Vector2 aimdir = (mousePos - transform.position);
 
         RaycastHit2D _hit = Physics2D.Raycast(transform.position, aimdir, range);

@@ -77,9 +77,6 @@ MonoBehaviour:
   _throwableMask:
     serializedVersion: 2
     m_Bits: 512
-  _throwable: {fileID: 0}
-  _pickable: {fileID: 0}
-  canPickThrowable: 0
 --- !u!50 &131595342
 Rigidbody2D:
   serializedVersion: 4
@@ -171,8 +168,8 @@ GameObject:
   - component: {fileID: 3030541206826440573}
   - component: {fileID: 3030541206826440574}
   - component: {fileID: 3030541206826440575}
-  - component: {fileID: 3030541206826440572}
   - component: {fileID: 1231558362}
+  - component: {fileID: 3030541206826440572}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -329,37 +326,6 @@ MonoBehaviour:
   canSlideOnObjects: 0
   isBoomeranging: 0
   velocity: {x: 0, y: 0, z: 0}
---- !u!114 &3030541206826440572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3030541206826440570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cd37ecdcdac7468ab5da7d33e69f982, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInput: {fileID: 0}
-  attackAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  mousePosAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
 --- !u!114 &1231558362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,3 +400,34 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3030541206826440572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3030541206826440570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cd37ecdcdac7468ab5da7d33e69f982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
+  attackAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  mousePosAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0

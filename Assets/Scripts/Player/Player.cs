@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 // ReSharper disable All
 
-[RequireComponent(typeof(Controller2D), typeof(InputProvider))]
+[RequireComponent(typeof(Controller), typeof(InputManager))]
 public class Player : MonoBehaviour
 {
     #region Variables & Constants
@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     #region Ref
     public static Player Instance;
     
-    [HideInInspector] public Controller2D controller;
+    [HideInInspector] public Controller controller;
     [HideInInspector] public CameraEffects cameraEffects;
     
     #endregion
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     public float accelerationAirborne = .1f;
     public float clampedFallSpeed = 30f;
 
-    private bool canMove = true;
+    public bool canMove = true;
     private bool isCrouching;
     private bool isWalking;
     private bool isGrounded;
@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        controller = GetComponent<Controller2D>();
+        controller = GetComponent<Controller>();
         boomerang = GameObject.FindGameObjectWithTag("Boomerang").GetComponent<Boomerang>();
 
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
@@ -138,11 +138,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        CalculateVelocity();
-        Flip();
-        HandleInteractions();
         if (canMove)
         {
+            CalculateVelocity();
+            Flip();
+            HandleInteractions();
             HandleJump();
             HandleGlide();
             HandleCrouch();
@@ -150,9 +150,9 @@ public class Player : MonoBehaviour
             HandlePushObject();
             HandleWallSliding();
             HandleClampedFallSpeed();
+            controller.Move(velocity * Time.deltaTime, directionalInput);
         }
 
-        controller.Move(velocity * Time.deltaTime, directionalInput);
 
         if (controller.collisionData.below)
         {
@@ -412,7 +412,7 @@ public class Player : MonoBehaviour
         if (!isBoomeranging)
         {
             isBoomeranging = true;
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputProvider.Instance.mousePosAction.ReadValue<Vector2>());
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputManager.Instance.mousePosAction.ReadValue<Vector2>());
             Vector2 angle = (mousePos - transform.position).normalized;
             boomerang.ActivateBoomerang(angle);
             boomerang.isBoomeranging = isBoomeranging;

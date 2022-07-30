@@ -1,7 +1,7 @@
 using UnityEngine;
 //Resharper disable All
 
-public class Controller2D : RaycastController
+public class Controller : RaycastController
 {
     #region Variables & Constants
     public LayerMask pushableMask;

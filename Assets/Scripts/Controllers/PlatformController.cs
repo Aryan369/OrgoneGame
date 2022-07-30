@@ -20,7 +20,7 @@ public class PlatformController : RaycastController
     Vector3[] globalWaypoints;
 
     List<PassengerMovement> passengerMovement;
-    Dictionary<Transform, Controller2D> passengerDictionary = new Dictionary<Transform, Controller2D>();
+    Dictionary<Transform, Controller> passengerDictionary = new Dictionary<Transform, Controller>();
 
     #endregion
 
@@ -96,7 +96,7 @@ public class PlatformController : RaycastController
         {
             if (!passengerDictionary.ContainsKey(passenger.transform))
             {
-                passengerDictionary.Add(passenger.transform, passenger.transform.GetComponent<Controller2D>());
+                passengerDictionary.Add(passenger.transform, passenger.transform.GetComponent<Controller>());
             }
 
             if(passenger.moveBeforePlatform == beforeMovePlatform)

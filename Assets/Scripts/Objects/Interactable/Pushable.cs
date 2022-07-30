@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Controller2D))]
+[RequireComponent(typeof(Controller))]
 public class Pushable : MonoBehaviour
 {
-	Controller2D controller;
+	Controller controller;
 	Vector2 velocity;
 
 	public float gravity = 24f;
 
 	void Start ()
 	{
-		controller = GetComponent<Controller2D> ();
+		controller = GetComponent<Controller> ();
 	}
 
 	void Update ()

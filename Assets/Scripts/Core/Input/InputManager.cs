@@ -3,10 +3,10 @@ using UnityEngine.InputSystem;
 //ReSharper disable All
 
 [RequireComponent(typeof(Player), typeof(PlayerInput))]
-public class InputProvider : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
     #region Variables
-    public static InputProvider Instance;
+    public static InputManager Instance;
     
     Player player;
 

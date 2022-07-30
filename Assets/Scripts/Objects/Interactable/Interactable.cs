@@ -11,13 +11,13 @@ public class Interactable : MonoBehaviour
     public bool _inRange { get; private set; }
     private bool _inRangeOld;
 
-    private Controller2D _controller;
+    private Controller _controller;
     
     private void Start()
     {
         _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
         _sr.sprite = cue0;
-        _controller = Player.Instance.GetComponent<Controller2D>();
+        _controller = Player.Instance.GetComponent<Controller>();
     }
 
     private void Update()
