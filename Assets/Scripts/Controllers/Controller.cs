@@ -480,8 +480,8 @@ public class Controller : RaycastController
                 if (collisionData.isInteracting)
                 {
                     collisionData.isPushingObject = true;
-                    Vector2 pushAmount = otherCollider.gameObject.GetComponent<Pushable>().Push(new Vector2(originalMoveAmountX, 0f));
-                    moveAmount = new Vector2(pushAmount.x, moveAmount.y + pushAmount.y);
+                    otherCollider.gameObject.GetComponent<Pushable>().Push(new Vector2(originalMoveAmountX, 0f));
+                    moveAmount = new Vector2(originalMoveAmountX, moveAmount.y);
                     collisionData.left = false;
                     collisionData.right = false;
                 }

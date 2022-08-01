@@ -28,7 +28,6 @@ public class Pushable : MonoBehaviour
 
     public Vector2 Push(Vector2 amount)
     {
-	    print(amount);
         return controller.Move(amount, false);
     }
 }
