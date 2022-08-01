@@ -69,6 +69,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Aminotejikara",
+                    "type": "Button",
+                    "id": "fadc8c07-9d9a-41ba-862d-ff0760339171",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Throw",
                     "type": "Button",
                     "id": "c22e39a1-37c7-45d5-bc8c-67cdf4abbc8a",
@@ -389,6 +398,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c207f435-7147-4b46-a7cf-7b09a1308ca8",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aminotejikara",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

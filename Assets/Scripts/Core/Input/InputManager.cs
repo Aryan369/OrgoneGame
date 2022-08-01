@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
     private InputAction throwAction;
     private InputAction boomerangAction;
     [HideInInspector] public InputAction attackAction;
+    [HideInInspector] public InputAction aminotejikaraAction;
 
     [HideInInspector] public InputAction mousePosAction;
 
@@ -52,6 +53,7 @@ public class InputManager : MonoBehaviour
         throwAction = playerInput.actions["Throw"];
         boomerangAction = playerInput.actions["Boomerang"];
         attackAction = playerInput.actions["Attack"];
+        aminotejikaraAction = playerInput.actions["Aminotejikara"];
 
         mousePosAction = playerInput.actions["MousePos"];
 
