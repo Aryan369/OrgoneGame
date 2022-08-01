@@ -66,10 +66,10 @@ public class Interactable : MonoBehaviour
 
     void CheckInteraction()
     {
-        if (_inRange && _controller.collisionData.isInteracting)
+        if (_inRange && !_controller.collisionData.isInteracting && Player.Instance._interactInp)
         {
             print("Do Something");
-            _controller.collisionData.isInteracting = false;
+            Player.Instance._interactInp = false;
         }
     }
 

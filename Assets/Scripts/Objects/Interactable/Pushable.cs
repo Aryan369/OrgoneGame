@@ -4,7 +4,7 @@
 public class Pushable : MonoBehaviour
 {
 	Controller controller;
-	Vector2 velocity;
+	public Vector2 velocity;
 
 	public float gravity = 24f;
 
@@ -28,6 +28,7 @@ public class Pushable : MonoBehaviour
 
     public Vector2 Push(Vector2 amount)
     {
+	    print(amount);
         return controller.Move(amount, false);
     }
 }

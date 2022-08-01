@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
     private bool canPushObject;
     private bool isPushingObject;
 
-    private bool _interactInp;
+    [HideInInspector] public bool _interactInp;
 
     #endregion
 
@@ -138,11 +138,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        HandleInteractions();
         if (canMove)
         {
             CalculateVelocity();
             Flip();
-            HandleInteractions();
             HandleJump();
             HandleGlide();
             HandleCrouch();
