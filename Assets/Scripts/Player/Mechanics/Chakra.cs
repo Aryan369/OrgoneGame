@@ -161,8 +161,27 @@ public class Chakra : MonoBehaviour
                 {
                     isTeleporting = true;
                     Vector3 _to = _replacedObj.transform.position;
-                    _replacedObj.transform.position = transform.position;
-                    Player.Instance.transform.position = _to;
+                    _replacedObj.transform.position = Player.Instance.transform.position;
+
+                    Vector3 offset = Vector2.zero;
+                    if (_to.x > Player.Instance.transform.position.x)
+                    {
+                        offset = new Vector3(-_replacedObj.transform.localScale.x, 0f);
+                    }
+                    else if (_to.x < Player.Instance.transform.position.x)
+                    {
+                        offset = new Vector3(_replacedObj.transform.localScale.x, 0f);;
+                    }
+                    if (_to.y > Player.Instance.transform.position.y)
+                    {
+                        offset = new Vector3(0f, -_replacedObj.transform.localScale.y);;
+                    }
+                    else if (_to.y < Player.Instance.transform.position.y)
+                    {
+                        offset = new Vector3(0f, _replacedObj.transform.localScale.y);
+                    }
+                    
+                    Player.Instance.transform.position = _to + offset;
                     if (_replacedObj.CompareTag("Throwable"))
                     {
                         _replacedObj.GetComponent<Throwable>().Replace();
@@ -182,7 +201,7 @@ public class Chakra : MonoBehaviour
                     {
                         isTeleporting = true;
                         Vector3 _to = _replacedObj.transform.position;
-                        _replacedObj.transform.position = transform.position;
+                        _replacedObj.transform.position = Player.Instance.transform.position;
                         Player.Instance.transform.position = _to;
                         if (_replacedObj.CompareTag("Throwable"))
                         {

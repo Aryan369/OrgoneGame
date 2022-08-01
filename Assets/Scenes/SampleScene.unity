@@ -429,7 +429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1045201527
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1248,7 +1248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2000792166}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.9, y: -3.076541, z: 0.2573213}
+  m_LocalPosition: {x: 43.4, y: -3.076541, z: 0.2573213}
   m_LocalScale: {x: 1, y: 2.03, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1573,7 +1573,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1095040798, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
       propertyPath: aimToSelect
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3030541206826440568, guid: fd006565cdc784fb681ffa39616fb0ee, type: 3}
       propertyPath: m_RootOrder
