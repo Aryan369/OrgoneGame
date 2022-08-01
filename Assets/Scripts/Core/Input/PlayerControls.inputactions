@@ -348,17 +348,6 @@
                 },
                 {
                     "name": "",
-                    "id": "f13ef072-b349-4c4f-9143-463635d737cc",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard & Mouse",
-                    "action": "Throw",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "e88ad0a4-16c7-49ba-bec2-6bdfdfde0adb",
                     "path": "<Keyboard>/c",
                     "interactions": "",

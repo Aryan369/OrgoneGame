@@ -301,7 +301,7 @@ public class Controller : RaycastController
                 }
             }
             
-            if (otherCollider != null && otherCollider != this)
+            if (otherCollider != null && otherCollider != this.collider)
             {
                 collisionData.canInteract = true;
                 collisionData.canPushObject = true;
@@ -337,7 +337,7 @@ public class Controller : RaycastController
 
                 if (hit)
                 {
-                    if (hit.collider.CompareTag("Pushable") && hit.collider != this)
+                    if (hit.collider.CompareTag("Pushable") && hit.collider != this.collider)
                     {
                         moveAmount.y = (hit.distance - skinWidth) * directionY;
                         rayLengthY = hit.distance;
